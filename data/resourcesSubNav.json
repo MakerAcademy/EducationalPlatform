@@ -1,0 +1,46 @@
+{
+  "navItems": [
+    {
+      "url": "/documentation/introduction-to-the-maker-protocol",
+      "name": "Introduction",
+      "slug": "maker-protocol-introduction",
+      "id": "1"
+    },
+    {
+      "url": "/documentation/introduction-to-core-module",
+      "name": "Smart Contracts",
+      "slug": "smart-contracts",
+      "id": "2"
+    },
+    {
+      "url": "/documentation/the-auctions-of-the-maker-protocol",
+      "name": "Auctions",
+      "slug": "auctions",
+      "id": "3"
+    },
+    {
+      "url": "/documentation/introduction-to-auction-keepers",
+      "name": "Keepers",
+      "slug": "keepers",
+      "id": "4"
+    },
+    {
+      "url": "/documentation/introduction-to-dai-js",
+      "name": "SDKs",
+      "slug": "sdks",
+      "id": "5"
+    },
+    {
+      "url": "/documentation/mcd-cli",
+      "name": "CLIs",
+      "slug": "clis",
+      "id": "6"
+    },
+    {
+      "url": "/documentation/mcd-glossaries",
+      "name": "Glossary",
+      "slug": "glossary",
+      "id": "7"
+    }
+  ]
+}
