@@ -1,6 +1,6 @@
 import { GH_REPOS_ENDPOINT } from './constants';
 
-const USE_CACHE = process.env.USE_CACHE === 'false';
+const USE_CACHE = process.env.USE_CACHE === 'true';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -30,8 +30,7 @@ export const metadataCallbacks = {
 const fetchCommits = async (path) => {
   const { USERNAME_ISSUES, GH_TOKEN_ISSUES, REPO_ISSUES, BASE_BRANCH } = process.env;
   const token = Buffer.from(`${USERNAME_ISSUES}:${GH_TOKEN_ISSUES}`, 'utf8').toString('base64');
-  const url = `${GH_REPOS_ENDPOINT}/${REPO_ISSUES}/commits?sha=${BASE_BRANCH}&path=${path}`;
-  console.log(url);
+  const url = `${GH_REPOS_ENDPOINT}/${REPO_ISSUES}/commits?sha=${BASE_BRANCH}&path=${path}&access_token=${GH_TOKEN_ISSUES}`;
   const response = await fetch(url, {
     headers: {
       Authorization: `Basic ${token}`,
@@ -42,10 +41,8 @@ const fetchCommits = async (path) => {
   });
 
   const json = await response.json();
-  console.log(json);
   if (!response.ok)
     throw new Error(`${response.statusText}: ${json.error?.message || JSON.stringify(json)}`);
-  console.log('json test');
   return json;
 };
 
@@ -54,7 +51,6 @@ const getFileCommits = async (file) => {
   let cachedCommits = {};
   const frontmatterKeys = Object.keys(file.data.frontmatter);
   const path = file.fileRelativePath;
-  console.log(file);
 
   if (USE_CACHE) {
     try {
@@ -71,12 +67,7 @@ const getFileCommits = async (file) => {
 
     for (let cb in metadataCallbacks) {
       if (!frontmatterKeys.includes(cb))
-        console.log('cacheEntry test try');
-        console.log('cb' , cb);
-        console.log(metadataCallbacks[cb]);
-        console.log('commits fetched', commitsFetched);
         cacheEntry[path][cb] = metadataCallbacks[cb](commitsFetched || []);
-        console.log('cacheEntry test success');
     }
 
     if (USE_CACHE) {
@@ -91,10 +82,8 @@ const getFileCommits = async (file) => {
         // A cached file is not required
       }
     }
-    console.log('cacheEntry');
     return cacheEntry[path];
   } else {
-    console.log('using cached commits');
     return cachedCommits[path];
   }
 };
