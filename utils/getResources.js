@@ -48,10 +48,8 @@ const getResources = async (preview, previewData, contentDir) => {
             Object.keys(metadataCallbacks).includes(property)
           )
         ) {
-          console.log('hello');
           // If so, fetch the properties from the commits and add to the frontmatter
           const commitData = await getFileCommits(file);
-          console.log('hello2');
           file.data.frontmatter = { ...file.data.frontmatter, ...commitData };
         }
       }
