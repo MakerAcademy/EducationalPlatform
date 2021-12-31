@@ -52,24 +52,8 @@ const Page = ({ file, guides, documentation, featGuidesFile, preview }) => {
       </Head>
       <InlineForm form={form}>
         <Grid sx={{ rowGap: 6 }}>
-          <PageLead cta="Start learning about MakerDAO" mobile={mobile} />
+          <PageLead cta="Begin your Journey" mobile={mobile} />
           <GuideList title="Featured Guides" path="guides" guides={featuredGuides} />
-          {/* <IntroText mobile={mobile} /> */}
-          {/* <Grid>
-            <Container>
-              <Heading variant="megaHeading">
-                Get Started&nbsp;<span sx={{ color: 'onBackgroundMuted' }}>With</span>
-              </Heading>
-            </Container>
-            <Grid sx={{ rowGap: 5 }}>
-              <DocumentationList />
-              <LibrariesSdks />
-            </Grid>
-          </Grid> */}
-          {/* <SecurityFeatures /> */}
-          {/* <CommunityCta mobile={mobile} /> */}
-          {/* <AboutThisSite preview={preview} /> */}
-          {/* <NewsletterCallout /> */}
         </Grid>
       </InlineForm>
     </SingleLayout>
