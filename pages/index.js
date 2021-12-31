@@ -52,7 +52,10 @@ const Page = ({ file, guides, documentation, featGuidesFile, preview }) => {
       </Head>
       <InlineForm form={form}>
         <Grid sx={{ rowGap: 6 }}>
-          <PageLead cta="Start learning about MakerDAO" mobile={mobile} />
+          <PageLead
+            cta="Interested? Watch Maker Academy's introduction video here!"
+            mobile={mobile}
+          />
           <GuideList title="Featured Guides" path="guides" guides={featuredGuides} />
           {/* <IntroText mobile={mobile} /> */}
           {/* <Grid>

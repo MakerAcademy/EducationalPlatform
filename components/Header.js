@@ -7,7 +7,7 @@ import Banners from '@components/Banners';
 import { banner as bannerData } from '../data/banner.json';
 
 const LINKS = [
-  { url: '/guides', name: 'Guides' },
+  { url: '/courses', name: 'Courses' },
   { url: '/login', name: 'Login' },
   { url: '/signup', name: 'Sign Up' },
 ];
