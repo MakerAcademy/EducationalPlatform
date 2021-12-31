@@ -24,16 +24,14 @@ import LibrariesSdks from '@components/LibrariesSdks';
 import { getResources } from '@utils';
 import { landingPageFormOptions } from '../data/formOptions';
 
-const Page = ({ file, guides, documentation, bannerFile, featGuidesFile, preview }) => {
+const Page = ({ file, guides, documentation, featGuidesFile, preview }) => {
   const [mobile, setMobile] = useState(false);
   const bpi = useBreakpointIndex({ defaultIndex: 2 });
   const router = useRouter();
 
   const [data, form] = useGithubJsonForm(file, landingPageFormOptions);
-  const [bannerData, bannerForm] = useBannerForm(bannerFile, preview);
   const [featGuidesData, featGuidesForm] = useFeaturedGuidesForm(featGuidesFile, preview);
 
-  useFormScreenPlugin(bannerForm);
   useFormScreenPlugin(featGuidesForm);
   usePlugin(form);
   useGithubToolbarPlugins();
@@ -48,16 +46,16 @@ const Page = ({ file, guides, documentation, bannerFile, featGuidesFile, preview
   );
 
   return (
-    <SingleLayout bannerData={bannerData.banner} mobile={mobile} router={router}>
+    <SingleLayout mobile={mobile} router={router}>
       <Head>
         <title>Maker Protocol Developer Portal</title>
       </Head>
       <InlineForm form={form}>
         <Grid sx={{ rowGap: 6 }}>
-          <PageLead cta="Start learning about the Maker Protocol" mobile={mobile} />
+          <PageLead cta="Start learning about MakerDAO" mobile={mobile} />
           <GuideList title="Featured Guides" path="guides" guides={featuredGuides} />
-          <IntroText mobile={mobile} />
-          <Grid>
+          {/* <IntroText mobile={mobile} /> */}
+          {/* <Grid>
             <Container>
               <Heading variant="megaHeading">
                 Get Started&nbsp;<span sx={{ color: 'onBackgroundMuted' }}>With</span>
@@ -67,11 +65,11 @@ const Page = ({ file, guides, documentation, bannerFile, featGuidesFile, preview
               <DocumentationList />
               <LibrariesSdks />
             </Grid>
-          </Grid>
-          <SecurityFeatures />
-          <CommunityCta mobile={mobile} />
-          <AboutThisSite preview={preview} />
-          <NewsletterCallout />
+          </Grid> */}
+          {/* <SecurityFeatures /> */}
+          {/* <CommunityCta mobile={mobile} /> */}
+          {/* <AboutThisSite preview={preview} /> */}
+          {/* <NewsletterCallout /> */}
         </Grid>
       </InlineForm>
     </SingleLayout>
@@ -82,9 +80,6 @@ const Page = ({ file, guides, documentation, bannerFile, featGuidesFile, preview
  * Fetch data with getStaticProps based on 'preview' mode
  */
 export const getStaticProps = async function ({ preview, previewData }) {
-  
-  console.log('preview', preview);
-  console.log('previewData', previewData);
   const resources = await getResources(preview, previewData, 'content/resources');
   const documentation = resources.filter((g) => g.data.frontmatter.contentType === 'documentation');
   const guides = resources.filter((g) => g.data.frontmatter.contentType === 'guides');
@@ -93,12 +88,6 @@ export const getStaticProps = async function ({ preview, previewData }) {
     const file = await getGithubPreviewProps({
       ...previewData,
       fileRelativePath: 'data/landingPage.json',
-      parse: parseJson,
-    });
-
-    const bannerFile = await getGithubPreviewProps({
-      ...previewData,
-      fileRelativePath: 'data/banner.json',
       parse: parseJson,
     });
 
@@ -111,9 +100,6 @@ export const getStaticProps = async function ({ preview, previewData }) {
     return {
       props: {
         file: { ...file.props.file },
-        bannerFile: {
-          ...bannerFile.props.file,
-        },
         featGuidesFile: {
           ...featGuidesFile.props.file,
         },
@@ -131,10 +117,6 @@ export const getStaticProps = async function ({ preview, previewData }) {
       file: {
         fileRelativePath: 'data/landingPage.json',
         data: (await import('../data/landingPage.json')).default,
-      },
-      bannerFile: {
-        fileRelativePath: 'data/banner.json',
-        data: (await import('../data/banner.json')).default,
       },
       featGuidesFile: {
         fileRelativePath: 'data/featuredGuides.json',

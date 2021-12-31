@@ -90,7 +90,7 @@ const PageLead = ({ cta, mobile }) => {
           >
             <InlineText name="subtext" />
           </Text>
-          <Link href="/documentation/introduction-to-the-maker-protocol">
+          <Link href="/guides">
             <Flex sx={{ alignItems: 'center' }}>
               <Icon sx={{ mr: 2 }} color="primary" name={'arrow_right'}></Icon>
               <ThemeLink>{cta}</ThemeLink>

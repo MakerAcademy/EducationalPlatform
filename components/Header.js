@@ -7,13 +7,13 @@ import Banners from '@components/Banners';
 import { banner as bannerData } from '../data/banner.json';
 
 const LINKS = [
-  { url: '/documentation', name: 'Documentation' },
   { url: '/guides', name: 'Guides' },
-  { url: '/security', name: 'Security' },
+  { url: '/login', name: 'Login' },
+  { url: '/signup', name: 'Sign Up' },
 ];
 
 const MobileMenu = ({ close, query, bannerData }) => {
-  const [{ linkText, url, text }] = bannerData;
+  const [{ linkText, url, text }] = null;
   return (
     <Container
       sx={{
@@ -81,10 +81,10 @@ const Header = ({ query, subnav, mobile, router }) => {
       sx={{ width: '100%', zIndex: 1, position: [mobileOpened ? 'fixed' : undefined, undefined] }}
     >
       {mobileOpened ? (
-        <MobileMenu close={() => setMobileOpened(false)} bannerData={bannerData} />
+        <MobileMenu close={() => setMobileOpened(false)} />
       ) : (
         <>
-          {!mobile && <Banners bannerData={bannerData} />}
+          {/* {!mobile && <Banners bannerData={bannerData} />} */}
           <Container as="header" mt={[0, 2]} sx={{ bg: 'background' }}>
             <Flex
               sx={{
