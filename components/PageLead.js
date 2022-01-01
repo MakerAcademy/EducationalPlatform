@@ -77,7 +77,7 @@ const PageLead = ({ cta, mobile }) => {
         <Heading variant="megaHeading">
           <InlineText name="primaryNavHeader" />
         </Heading>
-        <Heading sx={{ color: 'onBackgroundMuted' }} variant="megaHeading">
+        <Heading sx={{ color: 'onBackgroundMuted' }} variant="megaSubHeading">
           <InlineText name="secondaryNavHeader" />
         </Heading>
         <Flex sx={{ flexDirection: 'column', pl: [5, 7], mt: 3, width: ['100%', '75%'] }}>
