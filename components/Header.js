@@ -10,7 +10,7 @@ const LINKS = [
   { url: '/news', name: 'News' },
   { url: '/topics', name: 'Topics' },
   { url: '/programs', name: 'Programs' },
-  { url: '/login', name: 'Login' },
+  { url: 'api/auth/login', name: 'Login' },
   { url: '/signup', name: 'Sign Up' },
 ];
 

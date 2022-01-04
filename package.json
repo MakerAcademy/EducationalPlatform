@@ -13,6 +13,7 @@
     "testchain": "./node_modules/@makerdao/testchain/scripts/launch -s default --fast"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^1.6.2",
     "@emotion/core": "^10.0.35",
     "@makerdao/currency": "^0.9.9",
     "@makerdao/dai": "^0.32.5",
