@@ -5,17 +5,23 @@ import Link from 'next/link';
 import { Icon } from '@makerdao/dai-ui-icons';
 import Banners from '@components/Banners';
 import { banner as bannerData } from '../data/banner.json';
+import { useUser } from '@auth0/nextjs-auth0';
 
 const LINKS = [
   { url: '/news', name: 'News' },
   { url: '/topics', name: 'Topics' },
   { url: '/programs', name: 'Programs' },
-  { url: 'api/auth/login', name: 'Login' },
-  { url: '/signup', name: 'Sign Up' },
 ];
 
 const MobileMenu = ({ close, query, bannerData }) => {
   const [{ linkText, url, text }] = null;
+
+  const { user, error, isLoading } = useUser();
+
+  if (isLoading) {
+    console.log('Auth0 SDK is Loading');
+  }
+
   return (
     <Container
       sx={{
@@ -75,6 +81,16 @@ const MobileMenu = ({ close, query, bannerData }) => {
 const Header = ({ query, subnav, mobile, router }) => {
   const [mobileOpened, setMobileOpened] = useState(false);
 
+  const { user, error, isLoading } = useUser();
+
+  if (isLoading) {
+    console.log('Auth0 SDK is Loading');
+  }
+
+  if (!isLoading) {
+    console.log('Auth0 SDK finished Loading');
+  }
+
   useEffect(() => {
     setMobileOpened(false);
   }, [router?.asPath]);
@@ -123,6 +139,39 @@ const Header = ({ query, subnav, mobile, router }) => {
                       </NavLink>
                     </Link>
                   ))}
+                  {user ? (
+                    <a href="/api/auth/logout" key={'Logout'} style={{ textDecoration: 'none' }}>
+                      <NavLink
+                        key={'Logout'}
+                        sx={{
+                          display: ['none', 'none', 'block'],
+                          pr: 4,
+                          '&:last-child': { pr: [null, 0] },
+                        }}
+                        variant="links.nav"
+                      >
+                        {'Logout'}
+                      </NavLink>
+                    </a>
+                  ) : (
+                    <a
+                      href="/api/auth/login"
+                      key={'Login/Sign-Up'}
+                      style={{ textDecoration: 'none' }}
+                    >
+                      <NavLink
+                        key={'Login/Sign-Up'}
+                        sx={{
+                          display: ['none', 'none', 'block'],
+                          pr: 4,
+                          '&:last-child': { pr: [null, 0] },
+                        }}
+                        variant="links.nav"
+                      >
+                        {'Login/Sign-Up'}
+                      </NavLink>
+                    </a>
+                  )}
                 </Flex>
                 <IconButton sx={{ display: ['block', 'block', 'none'], cursor: 'pointer' }}>
                   <Icon
