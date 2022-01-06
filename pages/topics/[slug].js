@@ -8,67 +8,32 @@ import { useFormScreenPlugin } from 'tinacms';
 import { getGithubPreviewProps, parseMarkdown, parseJson } from 'next-tinacms-github';
 import useSubNavForm from '@hooks/useSubNavForm';
 import ResourcesLayout from '@layouts/ResourcesLayout';
-import SidebarDocumentation from '@components/SidebarDocumentation';
+import SidebarGuides from '@components/SidebarGuides';
 import ResourcePresentation from '@components/ResourcePresentation';
 import { createToc, getResources } from '@utils';
-import useStore from '@stores/store';
 import { ContentTypes } from '@utils/constants';
 
-const walk = (resources, array) => {
-  array.forEach((item) => {
-    const children = resources.filter(
-      (resource) => resource.data.frontmatter.parent === item.data.frontmatter.slug
-    );
-    if (children.length > 0) {
-      item.children = children;
-      walk(resources, item.children);
-    }
-  });
-};
-
-const DocsPage = ({ file, resources, navFile, sharedContentfile, preview, slug, toc }) => {
+const GuidesPage = ({ file, resources, navFile, sharedContentfile, preview, slug, toc }) => {
   const [navData, navForm] = useSubNavForm(navFile, preview);
   useFormScreenPlugin(navForm);
   const router = useRouter();
   const [mobile, setMobile] = useState(false);
   const bpi = useBreakpointIndex({ defaultIndex: 2 });
 
-  const [setActiveGroup, setActiveParent] = useStore((state) => [
-    state.setActiveGroup,
-    state.setActiveParent,
-  ]);
-
   useEffect(() => {
     setMobile(bpi < 2);
   }, [bpi]);
 
-  useEffect(() => {
-    setActiveGroup(file?.data.frontmatter.group);
-    setActiveParent(file?.data.frontmatter.parent);
-    return () => setActiveGroup(null) || setActiveParent(null);
-  }, [setActiveGroup, setActiveParent, file]);
-
-  const moduleResources = resources
-    ?.filter(
-      (r) =>
-        r.data.frontmatter.group === file.data.frontmatter.group &&
-        r.data.frontmatter.contentType === ContentTypes.DOCUMENTATION
-    )
-    .reduce((acc, val, i, array) => {
-      const isTopLevel = val.data.frontmatter.root && !val.data.frontmatter.parent;
-
-      if (isTopLevel) {
-        const dataObj = [val];
-        walk(array, dataObj);
-        acc.push(dataObj);
-      }
-      return acc;
-    }, []);
-
-  const relatedGuides = resources?.filter(
+  const moduleResources = resources?.filter(
     (r) =>
       r.data.frontmatter.components?.some((c) => file.data.frontmatter.components.includes(c)) &&
       r.data.frontmatter.contentType === ContentTypes.GUIDES
+  );
+
+  const relatedDocs = resources?.filter(
+    (r) =>
+      r.data.frontmatter.components?.some((c) => file.data.frontmatter.components.includes(c)) &&
+      r.data.frontmatter.contentType === ContentTypes.DOCUMENTATION
   );
 
   const title = file?.data?.frontmatter?.title;
@@ -79,19 +44,17 @@ const DocsPage = ({ file, resources, navFile, sharedContentfile, preview, slug, 
     <div>Loading...</div>
   ) : (
     <ResourcesLayout
-      resourcePath={ContentTypes.DOCUMENTATION}
+      resourcePath={ContentTypes.GUIDES}
       slug={slug}
       toc={toc}
       mobile={mobile}
       router={router}
       navData={navData}
       sidebar={
-        <SidebarDocumentation
+        <SidebarGuides
           resources={moduleResources}
-          resourcePath={ContentTypes.DOCUMENTATION}
+          resourcePath={ContentTypes.GUIDES}
           activeSlug={slug}
-          mobile={mobile}
-          router={router}
         />
       }
     >
@@ -100,10 +63,8 @@ const DocsPage = ({ file, resources, navFile, sharedContentfile, preview, slug, 
       </Head>
       <ResourcePresentation
         file={file}
-        resources={resources}
-        relatedResources={relatedGuides}
-        contentType={ContentTypes.DOCUMENTATION}
-        navFile={navFile}
+        relatedResources={relatedDocs}
+        contentType={ContentTypes.GUIDES}
         preview={preview}
         mobile={mobile}
         sharedContentfile={sharedContentfile}
@@ -141,6 +102,7 @@ export const getStaticProps = async function ({ preview, previewData, params }) 
     if (typeof window === 'undefined') {
       toc = createToc(markdownFile.props.file.data.markdownBody);
     }
+
     // Merge in the additional frontmatter props that aren't hardcoded into the doc
     markdownFile.props.file.data.frontmatter = {
       ...resource.data.frontmatter,
@@ -193,11 +155,11 @@ export const getStaticProps = async function ({ preview, previewData, params }) 
 
 export const getStaticPaths = async function () {
   const fg = require('fast-glob');
-  const contentDir = 'content/resources/documentation';
+  const contentDir = 'content/resources/guides';
   const files = await fg(`${contentDir}/**/*.md`);
 
   const paths = files.reduce((acc, file) => {
-    const content = require(`../../content/resources/documentation${file.replace(contentDir, '')}`);
+    const content = require(`../../content/resources/guides${file.replace(contentDir, '')}`);
     const { data } = matter(content.default);
     if (data.slug) acc.push({ params: { slug: data.slug } });
     return acc;
@@ -209,4 +171,4 @@ export const getStaticPaths = async function () {
   };
 };
 
-export default DocsPage;
+export default GuidesPage;
