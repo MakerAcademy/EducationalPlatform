@@ -6,6 +6,7 @@ import { Icon } from '@makerdao/dai-ui-icons';
 import Banners from '@components/Banners';
 import { banner as bannerData } from '../data/banner.json';
 import { useUser } from '@auth0/nextjs-auth0';
+import NavDropdown from './NavDropdown';
 
 const LINKS = [
   { url: '/news', name: 'News' },
@@ -130,19 +131,7 @@ const Header = ({ query, subnav, mobile, router }) => {
                     </Link>
                   ))}
                   {user ? (
-                    <a href="/api/auth/logout" key={'Logout'} style={{ textDecoration: 'none' }}>
-                      <NavLink
-                        key={'Logout'}
-                        sx={{
-                          display: ['none', 'none', 'block'],
-                          pr: 4,
-                          '&:last-child': { pr: [null, 0] },
-                        }}
-                        variant="links.nav"
-                      >
-                        {'Logout'}
-                      </NavLink>
-                    </a>
+                    <NavDropdown query={query} />
                   ) : (
                     <a
                       href="/api/auth/login"
