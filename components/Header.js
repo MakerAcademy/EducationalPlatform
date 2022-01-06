@@ -18,10 +18,6 @@ const MobileMenu = ({ close, query, bannerData }) => {
 
   const { user, error, isLoading } = useUser();
 
-  if (isLoading) {
-    console.log('Auth0 SDK is Loading');
-  }
-
   return (
     <Container
       sx={{
@@ -83,13 +79,7 @@ const Header = ({ query, subnav, mobile, router }) => {
 
   const { user, error, isLoading } = useUser();
 
-  if (isLoading) {
-    console.log('Auth0 SDK is Loading');
-  }
-
-  if (!isLoading) {
-    console.log('Auth0 SDK finished Loading');
-  }
+  console.log(user);
 
   useEffect(() => {
     setMobileOpened(false);
