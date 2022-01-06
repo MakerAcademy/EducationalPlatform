@@ -70,7 +70,7 @@ const Page = ({ guides }) => {
   }, [bpi]);
 
   const resources = guides.filter((guide) =>
-    active === 'everything' ? Boolean : guide.data.frontmatter.components.includes(active)
+    active === 'everything' ? Boolean : guide.data.frontmatter.subtopic.includes(active)
   );
   const componentNames = guides.reduce(
     (acc, guide) => {
