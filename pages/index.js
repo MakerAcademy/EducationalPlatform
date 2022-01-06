@@ -71,7 +71,7 @@ const Page = ({ file, guides, documentation, featGuidesFile, preview }) => {
 export const getStaticProps = async function ({ preview, previewData }) {
   const resources = await getResources(preview, previewData, 'content/resources');
   const documentation = resources.filter((g) => g.data.frontmatter.contentType === 'documentation');
-  const guides = resources.filter((g) => g.data.frontmatter.contentType === 'guides');
+  const guides = resources.filter((g) => g.data.frontmatter.contentType === 'topics');
   if (preview) {
     // get data from github
     const file = await getGithubPreviewProps({

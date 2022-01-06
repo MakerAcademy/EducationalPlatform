@@ -1,8 +1,10 @@
 ---
 title: Add a new collateral type to Maker Protocol - Kovan
 description: Learn how to add a new collateral type to the Maker Protocol through seth
-components:
-  - mcd
+topic:
+  - finance
+subtopic:
+  - accounting
 tags:
   - seth
   - new collateral type

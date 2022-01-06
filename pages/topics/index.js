@@ -74,7 +74,7 @@ const Page = ({ guides }) => {
   );
   const componentNames = guides.reduce(
     (acc, guide) => {
-      acc.push(...guide.data.frontmatter.components);
+      acc.push(...guide.data.frontmatter.subtopic);
       return [...new Set(acc)];
     },
     ['everything']
@@ -98,7 +98,7 @@ const Page = ({ guides }) => {
 };
 
 export const getStaticProps = async function ({ preview, previewData }) {
-  const resources = await getResources(preview, previewData, 'content/resources/guides');
+  const resources = await getResources(preview, previewData, 'content/resources/topics');
   const guides = resources.filter((g) => g.data.frontmatter.contentType === ContentTypes.GUIDES);
 
   if (preview) {
