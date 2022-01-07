@@ -2,7 +2,8 @@ import React from 'react';
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { PersonIcon } from '@radix-ui/react-icons';
-import { Link, NavLink } from 'theme-ui';
+import { jsx, Box, Container, Link as ThemeLink, NavLink, Flex, Text } from 'theme-ui';
+import Link from 'next/link';
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 
 const slideUpAndFade = keyframes({
@@ -145,7 +146,7 @@ const IconButton = styled.button`
   '&:focus': { boxShadow: '0 0 0 2px black' };
 `;
 
-export const NavDropdown = (props) => {
+const NavDropdown = (props) => {
   const query = props.query;
 
   return (
