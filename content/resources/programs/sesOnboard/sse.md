@@ -1,8 +1,8 @@
 ---
-title: Securities Example 1
+title: Accounting Example 1
 description: Learn how to add a new collateral type to the Maker Protocol through seth
-topic: law
-subtopic: securities
+topic: finance
+subtopic: accounting
 tags:
   - seth
   - new collateral type
@@ -10,7 +10,7 @@ tags:
   - terminal
   - mcd
 slug: add-new-collateral-type-to-maker-protocol-kovan
-contentType: guides
+contentType: programs
 root: false
 ---
 

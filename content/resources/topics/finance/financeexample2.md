@@ -1,10 +1,8 @@
 ---
 title: Currency Example 1
 description: Learn how to add a new collateral type to the Maker Protocol through seth
-topic:
-  - finance
-subtopic:
-  - currency
+topic: finance
+subtopic: currency
 tags:
   - seth
   - new collateral type

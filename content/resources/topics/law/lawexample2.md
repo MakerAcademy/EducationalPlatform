@@ -1,22 +1,20 @@
 ---
 title: Taxes Example 1
 description: Learn how to add a new collateral type to the Maker Protocol through seth
-topic:
-  - law
-subtopic:
-  - taxes
+topic: law
+subtopic: taxes
 tags:
   - seth
   - new collateral type
   - smart-contracts
   - terminal
   - mcd
-slug: add-new-collateral-type-to-maker-protocol-kovan
+slug: evading-taxes
 contentType: guides
 root: false
 ---
 
-# Add a new collateral type to Maker Protocol - Kovan
+# Evading Taxes 101
 
 **Level**: Advanced
 

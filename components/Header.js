@@ -8,7 +8,10 @@ import { banner as bannerData } from '../data/banner.json';
 import { useUser } from '@auth0/nextjs-auth0';
 import NavDropdown from '@components/NavDropdown';
 
-const LINKS = [{ url: '/news', name: 'News' }];
+const LINKS = [
+  { url: '/news', name: 'News' },
+  { url: '/programs', name: 'Programs' },
+];
 
 const DROPDOWN_LINKS = [
   {
@@ -19,7 +22,6 @@ const DROPDOWN_LINKS = [
       { name: 'Law', url: '/topics/law' },
     ],
   },
-  { url: '/programs', title: 'Programs', items: [{ name: 'Finance', url: '/topics/finance' }] },
 ];
 
 const MobileMenu = ({ close, query, bannerData }) => {

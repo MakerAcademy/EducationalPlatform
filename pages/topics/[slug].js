@@ -81,17 +81,17 @@ const DocsPage = ({ guides, slug }) => {
   const router = useRouter();
   const [mobile, setMobile] = useState(false);
   const bpi = useBreakpointIndex({ defaultIndex: 2 });
-
+  const url = 'topics/' + slug;
   useEffect(() => {
     setMobile(bpi < 2);
   }, [bpi]);
 
   const resources = guides.filter((guide) =>
-    active === 'everything' ? Boolean : guide.data.frontmatter.subtopic.includes(active)
+    active === 'everything' ? Boolean : guide.data.frontmatter.subtopic === active
   );
   const componentNames = guides.reduce(
     (acc, guide) => {
-      acc.push(...guide.data.frontmatter.subtopic);
+      acc.push(guide.data.frontmatter.subtopic);
       return [...new Set(acc)];
     },
     ['everything']
@@ -112,7 +112,7 @@ const DocsPage = ({ guides, slug }) => {
         count={resources.length}
         mobile={mobile}
       />
-      <GuideGrid title="Guides" path="topics" resources={resources} />
+      <GuideGrid title="Guides" path={url} resources={resources} />
     </SingleLayout>
   );
 };
@@ -120,11 +120,8 @@ const DocsPage = ({ guides, slug }) => {
 export const getStaticProps = async function ({ preview, previewData, params }) {
   const { slug } = params;
   const url = 'content/resources/topics/' + slug;
-  console.log(url);
   const resources = await getResources(preview, previewData, url);
-  console.log(resources);
   const guides = resources.filter((g) => g.data.frontmatter.contentType === ContentTypes.GUIDES);
-  console.log(guides);
   if (preview) {
     const file = (
       await getGithubPreviewProps({
