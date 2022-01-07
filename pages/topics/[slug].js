@@ -1,14 +1,19 @@
 import { useEffect, useState } from 'react';
+import Error from 'next/error';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { getGithubPreviewProps, parseJson } from 'next-tinacms-github';
-import { Container, Grid, Text, Flex, Box, Heading } from 'theme-ui';
 import { useBreakpointIndex } from '@theme-ui/match-media';
+import matter from 'gray-matter';
+import { useFormScreenPlugin } from 'tinacms';
+import { getGithubPreviewProps, parseMarkdown, parseJson } from 'next-tinacms-github';
+import useSubNavForm from '@hooks/useSubNavForm';
+import { createToc, getResources } from '@utils';
+import useStore from '@stores/store';
+import { ContentTypes } from '@utils/constants';
+import { Box, Container, Flex, Grid, Heading, jsx, Text } from 'theme-ui';
 import GuideGrid from '@components/GuideGrid';
 import Dropdown from '@components/Dropdown';
 import SingleLayout from '@layouts/SingleLayout';
-import { getResources } from '@utils';
-import { ContentTypes } from '@utils/constants';
 
 const FeaturedCount = ({ count, ...props }) => {
   return (
@@ -59,11 +64,23 @@ const Filter = ({ options, activeGroup, onChange, count, mobile }) => {
   );
 };
 
-const GuidesPage = ({ guides, slug }) => {
+const walk = (resources, array) => {
+  array.forEach((item) => {
+    const children = resources.filter(
+      (resource) => resource.data.frontmatter.parent === item.data.frontmatter.slug
+    );
+    if (children.length > 0) {
+      item.children = children;
+      walk(resources, item.children);
+    }
+  });
+};
+
+const DocsPage = ({ guides, slug }) => {
   const [active, setActive] = useState('everything');
+  const router = useRouter();
   const [mobile, setMobile] = useState(false);
   const bpi = useBreakpointIndex({ defaultIndex: 2 });
-  const router = useRouter();
 
   useEffect(() => {
     setMobile(bpi < 2);
@@ -86,7 +103,7 @@ const GuidesPage = ({ guides, slug }) => {
         <title>Maker Protocol Developer Portal - Guides</title>
       </Head>
       <Heading variant="megaHeading">
-        <Text> Finance </Text>
+        <Text> {slug} </Text>
       </Heading>
       <Filter
         activeGroup={active}
@@ -100,7 +117,8 @@ const GuidesPage = ({ guides, slug }) => {
   );
 };
 
-export const getStaticProps = async function ({ preview, previewData }) {
+export const getStaticProps = async function ({ preview, previewData, params }) {
+  const { slug } = params;
   const resources = await getResources(preview, previewData, 'content/resources/topics');
   const guides = resources.filter((g) => g.data.frontmatter.contentType === ContentTypes.GUIDES);
 
@@ -130,8 +148,27 @@ export const getStaticProps = async function ({ preview, previewData }) {
         data: (await import('../../data/guidesPage.json')).default,
       },
       guides,
+      slug,
     },
   };
 };
 
-export default GuidesPage;
+export const getStaticPaths = async function () {
+  const fg = require('fast-glob');
+  const contentDir = 'content/resources/documentation';
+  const files = await fg(`${contentDir}/**/*.md`);
+
+  const paths = files.reduce((acc, file) => {
+    const content = require(`../../content/resources/documentation${file.replace(contentDir, '')}`);
+    const { data } = matter(content.default);
+    if (data.slug) acc.push({ params: { slug: data.slug } });
+    return acc;
+  }, []);
+
+  return {
+    fallback: true,
+    paths,
+  };
+};
+
+export default DocsPage;
