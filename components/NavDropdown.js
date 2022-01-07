@@ -146,48 +146,36 @@ const IconButton = styled.button`
   '&:focus': { boxShadow: '0 0 0 2px black' };
 `;
 
-const NavDropdown = (props) => {
-  const query = props.query;
-
+const NavDropdown = ({ query, title, items }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <IconButton aria-label="Customise options">
-          <PersonIcon />
-        </IconButton>
+        <Text
+          sx={{ display: ['none', 'none', 'block'], pr: 4, '&:last-child': { pr: [null, 0] } }}
+          variant="links.nav"
+        >
+          {title}
+        </Text>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent>
-        <DropdownMenuItem>
-          <Link href={{ pathname: '/account', query }} passHref key={'My Account'}>
-            <NavLink
-              key={'My Account'}
-              sx={{
-                display: ['none', 'none', 'block'],
-                pr: 4,
-                '&:last-child': { pr: [null, 0] },
-              }}
-              variant="links.nav"
-            >
-              {'My Account'}
-            </NavLink>
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <a href="/api/auth/logout" key={'Logout'} style={{ textDecoration: 'none' }}>
-            <NavLink
-              key={'Logout'}
-              sx={{
-                display: ['none', 'none', 'block'],
-                pr: 4,
-                '&:last-child': { pr: [null, 0] },
-              }}
-              variant="links.nav"
-            >
-              {'Logout'}
-            </NavLink>
-          </a>
-        </DropdownMenuItem>
+        {items.map(({ name, url }) => (
+          <DropdownMenuItem key={name}>
+            <Link href={{ pathname: url, query }} passHref key={name}>
+              <NavLink
+                key={name}
+                sx={{
+                  display: ['none', 'none', 'block'],
+                  pr: 4,
+                  '&:last-child': { pr: [null, 0] },
+                }}
+                variant="links.nav"
+              >
+                {name}
+              </NavLink>
+            </Link>
+          </DropdownMenuItem>
+        ))}
         <DropdownMenuArrow />
       </DropdownMenuContent>
     </DropdownMenu>

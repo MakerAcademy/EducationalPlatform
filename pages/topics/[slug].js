@@ -119,7 +119,7 @@ const DocsPage = ({ guides, slug }) => {
 
 export const getStaticProps = async function ({ preview, previewData, params }) {
   const { slug } = params;
-  const resources = await getResources(preview, previewData, 'content/resources/topics');
+  const resources = await getResources(preview, previewData, 'content/resources/topics' + slug);
   const guides = resources.filter((g) => g.data.frontmatter.contentType === ContentTypes.GUIDES);
 
   if (preview) {

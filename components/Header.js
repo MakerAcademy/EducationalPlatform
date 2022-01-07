@@ -6,11 +6,13 @@ import { Icon } from '@makerdao/dai-ui-icons';
 import Banners from '@components/Banners';
 import { banner as bannerData } from '../data/banner.json';
 import { useUser } from '@auth0/nextjs-auth0';
+import NavDropdown from '@components/NavDropdown';
 
-const LINKS = [
-  { url: '/news', name: 'News' },
-  { url: '/topics', name: 'Topics' },
-  { url: '/programs', name: 'Programs' },
+const LINKS = [{ url: '/news', name: 'News' }];
+
+const DROPDOWN_LINKS = [
+  { url: '/topics', title: 'Topics', items: [{ name: 'Finance', url: '/topics/finance' }] },
+  { url: '/programs', title: 'Programs', items: [{ name: 'Finance', url: '/topics/finance' }] },
 ];
 
 const MobileMenu = ({ close, query, bannerData }) => {
@@ -59,12 +61,6 @@ const MobileMenu = ({ close, query, bannerData }) => {
           </Flex>
         </ThemeLink>
         <Text sx={{ px: 2, fontSize: 2, color: 'onBackgroundMuted' }}>{text}</Text>
-        {/*<Dropdown*/}
-        {/*  sx={{ width: [7, 8] }}*/}
-        {/*  options={['Finance', 'Business']}*/}
-        {/*  // activeGroup={activeGroup}*/}
-        {/*  // onChange={onChange}*/}
-        {/*/>*/}
         {LINKS.map(({ name, url }) => (
           <Link href={{ pathname: url, query }} passHref key={name}>
             <NavLink
@@ -145,6 +141,11 @@ const Header = ({ query, subnav, mobile, router }) => {
                       </NavLink>
                     </Link>
                   ))}
+
+                  {DROPDOWN_LINKS.map(({ url, title, items }) => (
+                    <NavDropdown query={query} url={url} title={title} items={items} />
+                  ))}
+
                   {user ? (
                     <a href="/api/auth/logout" key={'Logout'} style={{ textDecoration: 'none' }}>
                       <NavLink
