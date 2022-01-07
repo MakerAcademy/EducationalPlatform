@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { getGithubPreviewProps, parseJson } from 'next-tinacms-github';
-import { Container, Grid, Text, Flex, Box } from 'theme-ui';
+import { Container, Grid, Text, Flex, Box, Heading } from 'theme-ui';
 import { useBreakpointIndex } from '@theme-ui/match-media';
 import GuideGrid from '@components/GuideGrid';
 import Dropdown from '@components/Dropdown';
 import SingleLayout from '@layouts/SingleLayout';
 import { getResources } from '@utils';
 import { ContentTypes } from '@utils/constants';
+import { InlineText } from 'react-tinacms-inline';
 
 const FeaturedCount = ({ count, ...props }) => {
   return (
@@ -85,6 +86,9 @@ const Page = ({ guides }) => {
       <Head>
         <title>Maker Protocol Developer Portal - Guides</title>
       </Head>
+      <Heading variant="megaHeading">
+        <Text> Finance </Text>
+      </Heading>
       <Filter
         activeGroup={active}
         onChange={setActive}
@@ -92,7 +96,7 @@ const Page = ({ guides }) => {
         count={resources.length}
         mobile={mobile}
       />
-      <GuideGrid title="Guides" path="guides" resources={resources} />
+      <GuideGrid title="Guides" path="topics" resources={resources} />
     </SingleLayout>
   );
 };

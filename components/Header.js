@@ -59,6 +59,12 @@ const MobileMenu = ({ close, query, bannerData }) => {
           </Flex>
         </ThemeLink>
         <Text sx={{ px: 2, fontSize: 2, color: 'onBackgroundMuted' }}>{text}</Text>
+        {/*<Dropdown*/}
+        {/*  sx={{ width: [7, 8] }}*/}
+        {/*  options={['Finance', 'Business']}*/}
+        {/*  // activeGroup={activeGroup}*/}
+        {/*  // onChange={onChange}*/}
+        {/*/>*/}
         {LINKS.map(({ name, url }) => (
           <Link href={{ pathname: url, query }} passHref key={name}>
             <NavLink
