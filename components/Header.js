@@ -11,7 +11,14 @@ import NavDropdown from '@components/NavDropdown';
 const LINKS = [{ url: '/news', name: 'News' }];
 
 const DROPDOWN_LINKS = [
-  { url: '/topics', title: 'Topics', items: [{ name: 'Finance', url: '/topics/finance' }] },
+  {
+    url: '/topics',
+    title: 'Topics',
+    items: [
+      { name: 'Finance', url: '/topics/finance' },
+      { name: 'Law', url: '/topics/law' },
+    ],
+  },
   { url: '/programs', title: 'Programs', items: [{ name: 'Finance', url: '/topics/finance' }] },
 ];
 
