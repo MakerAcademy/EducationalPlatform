@@ -119,9 +119,12 @@ const DocsPage = ({ guides, slug }) => {
 
 export const getStaticProps = async function ({ preview, previewData, params }) {
   const { slug } = params;
-  const resources = await getResources(preview, previewData, 'content/resources/topics' + slug);
+  const url = 'content/resources/topics/' + slug;
+  console.log(url);
+  const resources = await getResources(preview, previewData, url);
+  console.log(resources);
   const guides = resources.filter((g) => g.data.frontmatter.contentType === ContentTypes.GUIDES);
-
+  console.log(guides);
   if (preview) {
     const file = (
       await getGithubPreviewProps({
