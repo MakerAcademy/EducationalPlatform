@@ -1,5 +1,5 @@
 ---
-title: Accounting Example 1
+title: SES 1
 description: Learn how to add a new collateral type to the Maker Protocol through seth
 topic: finance
 subtopic: accounting
