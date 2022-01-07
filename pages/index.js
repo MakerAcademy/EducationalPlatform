@@ -68,10 +68,10 @@ const Page = ({ file, guides, documentation, featGuidesFile, preview }) => {
 /**
  * Fetch data with getStaticProps based on 'preview' mode
  */
+const CONTENT_PATH = 'content';
 export const getStaticProps = async function ({ preview, previewData }) {
-  const resources = await getResources(preview, previewData, 'content/resources');
-  const documentation = resources.filter((g) => g.data.frontmatter.contentType === 'documentation');
-  const guides = resources.filter((g) => g.data.frontmatter.contentType === 'topics');
+  const content = await getResources(preview, previewData, CONTENT_PATH);
+  const guides = content.filter((g) => g.data.frontmatter.contentType === 'topics');
   if (preview) {
     // get data from github
     const file = await getGithubPreviewProps({
@@ -93,7 +93,6 @@ export const getStaticProps = async function ({ preview, previewData }) {
           ...featGuidesFile.props.file,
         },
         guides,
-        documentation,
         preview,
       },
     };
@@ -112,7 +111,6 @@ export const getStaticProps = async function ({ preview, previewData }) {
         data: (await import('../data/featuredGuides.json')).default,
       },
       guides,
-      documentation,
     },
   };
 };
