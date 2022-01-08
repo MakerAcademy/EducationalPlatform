@@ -13,6 +13,11 @@ const LINKS = [
   { url: '/programs', name: 'Programs' },
 ];
 
+const ACCOUNTLINKS = [
+  { url: '/account', name: 'Settings' },
+  { url: '/api/auth/logout', name: 'Logout' },
+];
+
 const DROPDOWN_LINKS = [
   {
     url: '/topics',
@@ -28,10 +33,6 @@ const MobileMenu = ({ close, query, bannerData }) => {
   const [{ linkText, url, text }] = null;
 
   const { user, error, isLoading } = useUser();
-
-  if (isLoading) {
-    console.log('Auth0 SDK is Loading');
-  }
 
   return (
     <Container
@@ -94,13 +95,7 @@ const Header = ({ query, subnav, mobile, router }) => {
 
   const { user, error, isLoading } = useUser();
 
-  if (isLoading) {
-    console.log('Auth0 SDK is Loading');
-  }
-
-  if (!isLoading) {
-    console.log('Auth0 SDK finished Loading');
-  }
+  console.log(user);
 
   useEffect(() => {
     setMobileOpened(false);
@@ -156,19 +151,7 @@ const Header = ({ query, subnav, mobile, router }) => {
                   ))}
 
                   {user ? (
-                    <a href="/api/auth/logout" key={'Logout'} style={{ textDecoration: 'none' }}>
-                      <NavLink
-                        key={'Logout'}
-                        sx={{
-                          display: ['none', 'none', 'block'],
-                          pr: 4,
-                          '&:last-child': { pr: [null, 0] },
-                        }}
-                        variant="links.nav"
-                      >
-                        {'Logout'}
-                      </NavLink>
-                    </a>
+                    <NavDropdown query={query} title={'My Account'} items={ACCOUNTLINKS} />
                   ) : (
                     <a
                       href="/api/auth/login"

@@ -10,17 +10,9 @@ import { useGithubToolbarPlugins, useGithubJsonForm } from 'react-tinacms-github
 import { InlineForm } from 'react-tinacms-inline';
 import SingleLayout from '@layouts/SingleLayout.js';
 import useCreateDocument from '@hooks/useCreateDocument';
-import useBannerForm from '@hooks/useBannerForm';
 import useFeaturedGuidesForm from '@hooks/useFeaturedGuidesForm';
 import GuideList from '@components/GuideList';
-import CommunityCta from '@components/CommunityCta';
-import AboutThisSite from '@components/AboutThisSite';
 import PageLead from '@components/PageLead';
-import IntroText from '@components/IntroText';
-import DocumentationList from '@components/DocumentationList';
-import SecurityFeatures from '@components/SecurityFeatures';
-import NewsletterCallout from '@components/NewsletterCallout';
-import LibrariesSdks from '@components/LibrariesSdks';
 import { getResources } from '@utils';
 import { landingPageFormOptions } from '../data/formOptions';
 

@@ -90,7 +90,7 @@ const PageLead = ({ cta, mobile }) => {
           >
             <InlineText name="subtext" />
           </Text>
-          <Link href="/guides">
+          <Link href="https://www.youtube.com/watch?v=BWqcw4lWoBM">
             <Flex sx={{ alignItems: 'center' }}>
               <Icon sx={{ mr: 2 }} color="primary" name={'arrow_right'}></Icon>
               <ThemeLink>{cta}</ThemeLink>
