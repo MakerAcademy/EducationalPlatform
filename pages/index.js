@@ -36,11 +36,12 @@ const Page = ({ file, guides, featGuidesFile, preview }) => {
   const featuredGuides = featGuidesData.featuredGuides.map((slug) =>
     guides.find(({ data }) => data.frontmatter.slug === slug)
   );
+  console.log(featuredGuides);
 
   return (
     <SingleLayout mobile={mobile} router={router}>
       <Head>
-        <title>Maker Protocol Developer Portal</title>
+        <title>Maker Academy</title>
       </Head>
       <InlineForm form={form}>
         <Grid sx={{ rowGap: 6 }}>

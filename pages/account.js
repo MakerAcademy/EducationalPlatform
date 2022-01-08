@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { Box } from 'theme-ui';
 import { Grid } from 'theme-ui';
 import Sidebar from '../components/SidebarDocumentation';
-import AccountSettings from '../components/AccountInfo';
+import AccountSettingsForm from '../components/AccountInfo';
 
 const Page = () => {
   const [mobile, setMobile] = useState(false);
@@ -31,7 +31,7 @@ const Page = () => {
             borderWidth: '0 0 0 0',
           }}
         >
-          <AccountSettings />
+          <AccountSettingsForm />
         </Box>
         <Box />
       </Grid>

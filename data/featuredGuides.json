@@ -1,11 +1,3 @@
 {
-  "featuredGuides": [
-    "dsr-manager-guide",
-    "auction-keeper-bot-setup-guide-2",
-    "how-to-build-a-dai-js-wallet-plugin",
-    "introduction-to-seth",
-    "emergency-shutdown-es-cli",
-    "how-to-use-mcd-cli-to-interact-with-mcd-kovan-deployment",
-    "dai-token"
-  ]
+  "featuredGuides": ["add-new-collateral-type-to-maker-protocol-kovan", "lawexample1"]
 }

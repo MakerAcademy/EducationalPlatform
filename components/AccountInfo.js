@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { jsx, Box, Flex, Text, Radio, Divider, Label, Button, Input } from 'theme-ui';
 import { useUser } from '@auth0/nextjs-auth0';
 
-const AccountSettings = () => {
+const AccountSettingsForm = () => {
   const { user, error, isLoading } = useUser();
   const name = user ? user.name : 'Your Name';
   const username = user ? user.nickname : 'Your Username';
@@ -25,13 +25,13 @@ const AccountSettings = () => {
         <Label>Role</Label>
         <Flex mb={3}>
           <Label>
-            <Radio name="letter" /> Learner
+            <Radio name="learner-role" defaultChecked={true} /> Learner
           </Label>
           <Label>
-            <Radio name="letter" /> Educator
+            <Radio name="educator-role" /> Educator
           </Label>
           <Label>
-            <Radio name="letter" /> Editor
+            <Radio name="editor-role" /> Editor
           </Label>
         </Flex>
       </Box>
@@ -59,4 +59,4 @@ const AccountSettings = () => {
   );
 };
 
-export default AccountSettings;
+export default AccountSettingsForm;

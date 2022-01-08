@@ -35,7 +35,7 @@ const Page = ({ guides }) => {
   return (
     <SingleLayout mobile={mobile} router={router}>
       <Head>
-        <title>Maker Protocol Developer Portal - Guides</title>
+        <title>Maker Academy - Guides</title>
       </Head>
       <Heading variant="megaHeading">
         <Text> Programs </Text>

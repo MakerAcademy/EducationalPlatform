@@ -59,7 +59,7 @@ const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, previe
       }
     >
       <Head>
-        <title>{title || 'Maker Protocol Developer Portal'}</title>
+        <title>{title || 'Maker Academy'}</title>
       </Head>
       <ResourcePresentation
         file={file}
