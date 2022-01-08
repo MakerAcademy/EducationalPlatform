@@ -1,20 +1,16 @@
 ---
-title: Securities Example 1
-description: Learn how to add a new collateral type to the Maker Protocol through seth
-topic: law
-subtopic: Securities
-tags:
-  - seth
-  - new collateral type
-  - smart-contracts
-  - terminal
-  - mcd
-slug: add-new-collateral-type-to-maker-protocol-kovan
-contentType: guides
+title: How Does a DAO Manage IP?
+description: This will give you an overview of MakerDAO's copyrights, patents, etc from a legal perspective.
+topic: Law
+subtopic: Intellectual Property
+level: intermediate
+estimatedTime: 50 - 80 minutes
+titleURL: how-does-a-dao-manage-ip
+contentType: topics
 root: false
 ---
 
-# Add a new collateral type to Maker Protocol - Kovan
+# Evading Taxes 101
 
 **Level**: Advanced
 
