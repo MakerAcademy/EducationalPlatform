@@ -13,7 +13,7 @@ const TagList = ({ tags }) => (
   </Text>
 );
 
-const GuideCard = ({ title, link, linkText, description, icon, tags, ...props }) => {
+const GuideCard = ({ title, link, linkText, description, icon, ...props }) => {
   return (
     <Box {...props}>
       <Link href={link} passHref>
@@ -34,7 +34,6 @@ const GuideCard = ({ title, link, linkText, description, icon, tags, ...props })
           >
             {description}
           </Text>
-          <TagList tags={tags} />
           <Flex sx={{ alignItems: 'center', alignSelf: 'end' }}>
             <Icon name="arrow_right" color="primary" mr={2} />
             <ThemeLink>{linkText}</ThemeLink>

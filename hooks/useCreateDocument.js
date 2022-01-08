@@ -26,7 +26,7 @@ const useCreateDocument = (resources) => {
             }
             if (
               resources.some(
-                (post) => post.data.frontmatter.slug === slugify(value, { lower: true })
+                (post) => post.data.frontmatter.titleURL === slugify(value, { lower: true })
               )
             ) {
               return 'Sorry the document title must be unique';

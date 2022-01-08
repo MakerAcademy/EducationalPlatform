@@ -12,7 +12,7 @@ import WrapperLayout from '@layouts/WrapperLayout';
 const walk = (resources, array) => {
   array.forEach((item) => {
     const children = resources.filter(
-      (resource) => resource.data.frontmatter.parent === item.data.frontmatter.slug
+      (resource) => resource.data.frontmatter.parent === item.data.frontmatter.titleURL
     );
     if (children.length > 0) {
       item.children = children;
@@ -72,7 +72,9 @@ export const getStaticProps = async function ({ preview, previewData, params }) 
   const url = TOPICS_PATH + '/' + topic;
   console.log(url);
   const resources = await getResources(preview, previewData, url);
-  const posts = resources.filter((g) => g.data.frontmatter.contentType === ContentTypes.GUIDES);
+  console.log(resources.length);
+  const posts = resources.filter((g) => g.data.frontmatter.contentType === 'topics');
+  console.log(posts.length);
   if (preview) {
     const file = (
       await getGithubPreviewProps({
@@ -105,16 +107,6 @@ export const getStaticProps = async function ({ preview, previewData, params }) 
 };
 
 export const getStaticPaths = async function () {
-  // const fg = require('fast-glob');
-  // const contentDir = 'content/topics';
-  // const files = await fg(`${contentDir}/**/*.md`);
-  // console.log('hi');
-  // const paths = files.reduce((acc, file) => {
-  //   const content = require(`../../content/topics${file.replace(contentDir, '')}`);
-  //   const { data } = matter(content.default);
-  //   if (data.slug) acc.push({ params: { topic: data.topic } });
-  //   return acc;
-  // }, []);
   const paths = [];
   return {
     fallback: true,

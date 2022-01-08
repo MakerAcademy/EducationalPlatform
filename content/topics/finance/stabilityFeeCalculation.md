@@ -1,16 +1,12 @@
 ---
-title: Currency Example 1
-description: Learn how to add a new collateral type to the Maker Protocol through seth
-topic: finance
-subtopic: currency
-tags:
-  - seth
-  - new collateral type
-  - smart-contracts
-  - terminal
-  - mcd
-slug: add-new-collateral-type-to-maker-protocol-kovan
-contentType: guides
+title: How Does MakerDAO Determine Stability Fees?
+description: This will teach you how stability fees are calculated.
+topic: Finance
+subtopic: Banking
+level: advanced
+estimatedTime: 200 - 250 minutes
+titleURL: how-does-makerdao-determine-stability-fees
+contentType: topics
 root: false
 ---
 

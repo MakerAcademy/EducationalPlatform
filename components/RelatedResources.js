@@ -14,7 +14,11 @@ const RelatedResources = ({ resources = [], contentType, show = 3 }) => {
       </Heading>
       {resources.slice(0, show).map(({ data }, i) => {
         return (
-          <Link key={data.frontmatter.slug} href={`/${nextType}/${data.frontmatter.slug}`} passHref>
+          <Link
+            key={data.frontmatter.titleURL}
+            href={`/${nextType}/${data.frontmatter.titleURL}`}
+            passHref
+          >
             <Flex
               sx={{
                 alignItems: 'center',

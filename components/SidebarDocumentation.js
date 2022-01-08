@@ -80,7 +80,7 @@ const List = ({ items, resourcePath, activeSlug, mobile }) => {
         root={items.data.frontmatter.root}
         activeSlug={activeSlug}
         resourcePath={resourcePath}
-        slug={items.data.frontmatter.slug}
+        slug={items.data.frontmatter.titleURL}
         parent={items.data.frontmatter.parent}
       />
     </Fragment>

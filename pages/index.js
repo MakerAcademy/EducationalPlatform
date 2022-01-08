@@ -34,7 +34,7 @@ const Page = ({ file, guides, featGuidesFile, preview }) => {
   }, [bpi]);
 
   const featuredGuides = featGuidesData.featuredGuides.map((slug) =>
-    guides.find(({ data }) => data.frontmatter.slug === slug)
+    guides.find(({ data }) => data.frontmatter.titleURL === slug)
   );
 
   return (
@@ -49,7 +49,7 @@ const Page = ({ file, guides, featGuidesFile, preview }) => {
             mobile={mobile}
           />
           <GuideList title="Featured Programs" path="guides" guides={featuredGuides} />
-          <GuideList title="Featured Topics" path="guides" guides={featuredGuides} />
+          <GuideList title="Featured Topics" path="topics" guides={featuredGuides} />
           <GuideList title="Recent MakerDAO News" path="guides" guides={featuredGuides} />
         </Grid>
       </InlineForm>
@@ -64,6 +64,7 @@ const CONTENT_PATH = 'content';
 export const getStaticProps = async function ({ preview, previewData }) {
   const content = await getResources(preview, previewData, CONTENT_PATH);
   const guides = content.filter((g) => g.data.frontmatter.contentType === 'topics');
+  console.log(guides.length);
   if (preview) {
     // get data from github
     const file = await getGithubPreviewProps({

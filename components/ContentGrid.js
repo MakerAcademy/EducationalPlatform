@@ -10,7 +10,7 @@ const ContentGrid = ({ content, path }) => {
           (
             {
               data: {
-                frontmatter: { group, title, slug, description, tags },
+                frontmatter: { group, title, titleURL, description },
               },
             },
             i
@@ -21,10 +21,9 @@ const ContentGrid = ({ content, path }) => {
                 title={title}
                 type={group}
                 description={description}
-                link={`/${path}/${slug}/`}
+                link={`/${path}/${titleURL}/`}
                 linkText={'Read'}
                 icon={`stamp_${(i % 5) + 1}`}
-                tags={tags}
               />
             );
           }
