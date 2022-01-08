@@ -14,6 +14,11 @@ const LINKS = [
   { url: '/programs', name: 'Programs' },
 ];
 
+const ACCOUNTLINKS = [
+  { url: '/account', name: 'Settings' },
+  { url: '/api/auth/logout', name: 'Logout' },
+];
+
 const MobileMenu = ({ close, query, bannerData }) => {
   const [{ linkText, url, text }] = null;
 
@@ -131,7 +136,7 @@ const Header = ({ query, subnav, mobile, router }) => {
                     </Link>
                   ))}
                   {user ? (
-                    <NavDropdown query={query} />
+                    <NavDropdown query={query} title={'My Account'} items={ACCOUNTLINKS} />
                   ) : (
                     <a
                       href="/api/auth/login"
