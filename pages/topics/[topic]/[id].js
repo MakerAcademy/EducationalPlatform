@@ -13,7 +13,7 @@ import ResourcePresentation from '@components/ResourcePresentation';
 import { createToc, getResources } from '@utils';
 import { ContentTypes } from '@utils/constants';
 
-const GuidesPage = ({ slug, file, resources, navFile, sharedContentfile, preview, id, toc }) => {
+const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, preview, id, toc }) => {
   const [navData, navForm] = useSubNavForm(navFile, preview);
   useFormScreenPlugin(navForm);
   const router = useRouter();
@@ -64,7 +64,7 @@ const GuidesPage = ({ slug, file, resources, navFile, sharedContentfile, preview
       <ResourcePresentation
         file={file}
         relatedResources={relatedDocs}
-        contentType={slug}
+        contentType={topic}
         preview={preview}
         mobile={mobile}
         sharedContentfile={sharedContentfile}
@@ -75,10 +75,10 @@ const GuidesPage = ({ slug, file, resources, navFile, sharedContentfile, preview
 
 export const getStaticProps = async function ({ preview, previewData, params }) {
   console.log(params);
-  const { slug, id } = params;
+  const { topic, id } = params;
   let toc = '';
 
-  const resources = await getResources(preview, previewData, 'content/resources/topics/' + slug);
+  const resources = await getResources(preview, previewData, 'content/topics/' + topic);
   const resource = resources.find((r) => r.data.frontmatter.slug === id);
   const fileRelativePath = resource.fileRelativePath;
 
@@ -137,7 +137,7 @@ export const getStaticProps = async function ({ preview, previewData, params }) 
         data: (await import('../../../data/resourcesSubNav.json')).default,
       },
       id,
-      slug,
+      topic,
       resources,
       toc,
       sourceProvider: null,
@@ -157,15 +157,15 @@ export const getStaticProps = async function ({ preview, previewData, params }) 
 
 export const getStaticPaths = async function () {
   const fg = require('fast-glob');
-  const contentDir = 'content/resources/topics';
+  const contentDir = 'content/topics';
   const files = await fg(`${contentDir}/**/*.md`);
 
   const paths = files.reduce((acc, file) => {
-    const content = require(`../../../content/resources/topics${file.replace(contentDir, '')}`);
+    const content = require(`../../../content/topics${file.replace(contentDir, '')}`);
     const { data } = matter(content.default);
     console.log('--------------------');
     console.log(data);
-    if (data.slug) acc.push({ params: { id: data.slug, slug: data.subtopic } });
+    if (data.slug) acc.push({ params: { id: data.slug, topic: data.subtopic } });
     return acc;
   }, []);
 

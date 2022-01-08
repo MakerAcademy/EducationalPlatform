@@ -64,6 +64,10 @@ const theme = {
       fontFamily: 'heading',
       fontWeight: 'body',
     },
+    topicsTitle: {
+      variant: 'text.heading',
+      fontSize: [8, 10],
+    },
     plainText: {
       fontFamily: 'heading',
       fontWeight: 'body',

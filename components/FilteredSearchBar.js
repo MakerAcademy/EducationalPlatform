@@ -1,4 +1,4 @@
-import { Text, Flex } from 'theme-ui';
+import { Text, Flex, Container } from 'theme-ui';
 import Dropdown from '@components/Dropdown';
 import SearchBar from '@components/SearchBar';
 import { useState } from 'react';
@@ -20,15 +20,17 @@ const FeaturedCount = ({ count, ...props }) => {
 
 const FilteredSearchBar = ({ filters, filteredCount, filterOnChange, onSearchChange }) => {
   return (
-    <Flex>
-      <Dropdown
-        sx={{ width: [7, 8] }}
-        options={filters}
-        activeGroup="all"
-        onChange={filterOnChange}
-      />
-      <SearchBar onChange={onSearchChange} />
-      <FeaturedCount count={filteredCount} sx={{ py: 2, px: 4 }} />
+    <Flex sx={{ flexDirection: 'column', p: 4 }}>
+      <Flex sx={{ flexDirection: 'row' }}>
+        <Dropdown
+          sx={{ '&:focus': { color: 'black' }, bg: 'grey', color: 'black', width: 150 }}
+          options={filters}
+          activeGroup="all"
+          onChange={filterOnChange}
+        />
+        <SearchBar onChange={onSearchChange} />
+      </Flex>
+      <FeaturedCount count={filteredCount} />
     </Flex>
   );
 };

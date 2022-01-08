@@ -2,7 +2,7 @@
 title: Taxes Example 1
 description: Learn how to add a new collateral type to the Maker Protocol through seth
 topic: law
-subtopic: taxes
+subtopic: Taxes
 tags:
   - seth
   - new collateral type

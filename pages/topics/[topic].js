@@ -21,7 +21,7 @@ const walk = (resources, array) => {
   });
 };
 
-const NO_FILTER = 'all';
+const NO_FILTER = 'All';
 
 const TopicPage = ({ posts, topic }) => {
   const [filter, setFilter] = useState(NO_FILTER);
@@ -56,7 +56,7 @@ const TopicPage = ({ posts, topic }) => {
         mobile={mobile}
         filters={filters}
         filteredCount={filteredPosts.length}
-        title={topic}
+        title={topic.charAt(0).toUpperCase() + topic.slice(1)}
         filterOnChange={setFilter}
         onSearchChange={onSearchChange}
       />

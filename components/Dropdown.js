@@ -14,7 +14,7 @@ const Dropdown = ({ options, activeGroup, onChange, ...props }) => {
           }}
           name="chevron_down"
           size={3}
-          color="primary"
+          color="black"
         />
       }
       {...props}

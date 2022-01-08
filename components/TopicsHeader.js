@@ -1,4 +1,4 @@
-import { Box, Flex, Heading } from 'theme-ui';
+import { Box, Flex, Container, Heading } from 'theme-ui';
 import FilteredSearchBar from '@components/FilteredSearchBar';
 
 const TopicsHeader = ({
@@ -10,22 +10,18 @@ const TopicsHeader = ({
   onSearchChange,
 }) => {
   return (
-    <Box p={4}>
-      <Flex
-        sx={{
-          alignItems: 'center',
-        }}
-      >
-        <Heading>{title}</Heading>
-        <FilteredSearchBar
-          filters={filters}
-          filteredCount={filteredCount}
-          filterOnChange={filterOnChange}
-          onSearchChange={onSearchChange}
-          mobile={mobile}
-        />
-      </Flex>
-    </Box>
+    <Flex sx={{ flexDirection: 'row', pl: 5, pt: 4, pb: 4 }}>
+      <Heading mr={4} variant="topicsTitle">
+        {title}
+      </Heading>
+      <FilteredSearchBar
+        filters={filters}
+        filteredCount={filteredCount}
+        filterOnChange={filterOnChange}
+        onSearchChange={onSearchChange}
+        mobile={mobile}
+      />
+    </Flex>
   );
 };
 
