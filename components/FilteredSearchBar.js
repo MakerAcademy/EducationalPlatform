@@ -1,6 +1,7 @@
-import { Text, Container } from 'theme-ui';
+import { Text, Flex } from 'theme-ui';
 import Dropdown from '@components/Dropdown';
 import SearchBar from '@components/SearchBar';
+import { useState } from 'react';
 
 const FeaturedCount = ({ count, ...props }) => {
   return (
@@ -17,18 +18,18 @@ const FeaturedCount = ({ count, ...props }) => {
   );
 };
 
-const FilteredSearchBar = ({ filters, filteredCount, filterOnChange }) => {
+const FilteredSearchBar = ({ filters, filteredCount, filterOnChange, onSearchChange }) => {
   return (
-    <Container>
+    <Flex>
       <Dropdown
         sx={{ width: [7, 8] }}
         options={filters}
         activeGroup="all"
         onChange={filterOnChange}
       />
-      <SearchBar />
+      <SearchBar onChange={onSearchChange} />
       <FeaturedCount count={filteredCount} sx={{ py: 2, px: 4 }} />
-    </Container>
+    </Flex>
   );
 };
 

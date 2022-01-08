@@ -24,7 +24,7 @@ import LibrariesSdks from '@components/LibrariesSdks';
 import { getResources } from '@utils';
 import { landingPageFormOptions } from '../data/formOptions';
 
-const Page = ({ file, guides, documentation, featGuidesFile, preview }) => {
+const Page = ({ file, guides, featGuidesFile, preview }) => {
   const [mobile, setMobile] = useState(false);
   const bpi = useBreakpointIndex({ defaultIndex: 2 });
   const router = useRouter();
@@ -35,7 +35,7 @@ const Page = ({ file, guides, documentation, featGuidesFile, preview }) => {
   useFormScreenPlugin(featGuidesForm);
   usePlugin(form);
   useGithubToolbarPlugins();
-  useCreateDocument([...guides, ...documentation]);
+  useCreateDocument([...guides]);
 
   useEffect(() => {
     setMobile(bpi < 2);

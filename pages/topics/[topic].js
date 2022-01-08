@@ -25,8 +25,12 @@ const NO_FILTER = 'all';
 
 const TopicPage = ({ posts, topic }) => {
   const [filter, setFilter] = useState(NO_FILTER);
+  const [searchChange, onSearchChange] = useState('');
   const filteredPosts = posts.filter((post) =>
-    filter === NO_FILTER ? Boolean : post.data.frontmatter.subtopic === filter
+    filter === NO_FILTER
+      ? post.data.frontmatter.title.includes(searchChange)
+      : post.data.frontmatter.subtopic === filter &&
+        post.data.frontmatter.title.includes(searchChange)
   );
   const filters = posts.reduce(
     (acc, post) => {
@@ -54,6 +58,7 @@ const TopicPage = ({ posts, topic }) => {
         filteredCount={filteredPosts.length}
         title={topic}
         filterOnChange={setFilter}
+        onSearchChange={onSearchChange}
       />
       <ContentGrid content={filteredPosts} path={url} />
     </WrapperLayout>
@@ -100,17 +105,17 @@ export const getStaticProps = async function ({ preview, previewData, params }) 
 };
 
 export const getStaticPaths = async function () {
-  const fg = require('fast-glob');
-  const contentDir = 'content/resources/documentation';
-  const files = await fg(`${contentDir}/**/*.md`);
-
-  const paths = files.reduce((acc, file) => {
-    const content = require(`../../content/resources/documentation${file.replace(contentDir, '')}`);
-    const { data } = matter(content.default);
-    if (data.slug) acc.push({ params: { slug: data.slug } });
-    return acc;
-  }, []);
-
+  // const fg = require('fast-glob');
+  // const contentDir = 'content/topics';
+  // const files = await fg(`${contentDir}/**/*.md`);
+  // console.log('hi');
+  // const paths = files.reduce((acc, file) => {
+  //   const content = require(`../../content/topics${file.replace(contentDir, '')}`);
+  //   const { data } = matter(content.default);
+  //   if (data.slug) acc.push({ params: { topic: data.topic } });
+  //   return acc;
+  // }, []);
+  const paths = [];
   return {
     fallback: true,
     paths,
