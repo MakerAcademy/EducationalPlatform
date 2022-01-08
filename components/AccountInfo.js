@@ -1,7 +1,13 @@
-import React from 'react';
-import { Box, Flex, Radio, Divider, Label, Button, Input } from 'theme-ui';
+/** @jsx jsx */
+import { useEffect, useState } from 'react';
+import { jsx, Box, Flex, Text, Radio, Divider, Label, Button, Input } from 'theme-ui';
+import { useUser } from '@auth0/nextjs-auth0';
 
 const AccountSettings = () => {
+  const { user, error, isLoading } = useUser();
+  const name = user ? user.name : 'Your Name';
+  const username = user ? user.nickname : 'Your Username';
+
   return (
     <Box>
       <Box>
@@ -9,11 +15,11 @@ const AccountSettings = () => {
       </Box>
       <Box>
         <Label htmlFor="name">Name</Label>
-        <Input id="name" defaultValue="Pedro Duarte" />
+        <Input id="name" defaultValue={name} />
       </Box>
       <Box>
         <Label htmlFor="username">Username</Label>
-        <Input id="username" defaultValue="@peduarte" />
+        <Input id="username" defaultValue={username} />
       </Box>
       <Box>
         <Label>Role</Label>
@@ -33,6 +39,7 @@ const AccountSettings = () => {
         <Button>Save changes</Button>
       </Flex>
       <Divider />
+      <Text>Change your password here. After saving, you'll be logged out.</Text>
       <Box>
         <Label htmlFor="currentPassword">Current password</Label>
         <Input id="currentPassword" type="password" />
