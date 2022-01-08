@@ -16,18 +16,18 @@ import PageLead from '@components/PageLead';
 import { getResources } from '@utils';
 import { landingPageFormOptions } from '../data/formOptions';
 
-const Page = ({ file, guides, documentation, featGuidesFile, preview }) => {
+const Page = ({ file, guides, featGuidesFile, preview }) => {
   const [mobile, setMobile] = useState(false);
   const bpi = useBreakpointIndex({ defaultIndex: 2 });
   const router = useRouter();
-
+  // const [topic, setTopic] = useState('');
   const [data, form] = useGithubJsonForm(file, landingPageFormOptions);
   const [featGuidesData, featGuidesForm] = useFeaturedGuidesForm(featGuidesFile, preview);
 
   useFormScreenPlugin(featGuidesForm);
   usePlugin(form);
   useGithubToolbarPlugins();
-  useCreateDocument([...guides, ...documentation]);
+  useCreateDocument([...guides]);
 
   useEffect(() => {
     setMobile(bpi < 2);
@@ -60,10 +60,10 @@ const Page = ({ file, guides, documentation, featGuidesFile, preview }) => {
 /**
  * Fetch data with getStaticProps based on 'preview' mode
  */
+const CONTENT_PATH = 'content';
 export const getStaticProps = async function ({ preview, previewData }) {
-  const resources = await getResources(preview, previewData, 'content/resources');
-  const documentation = resources.filter((g) => g.data.frontmatter.contentType === 'documentation');
-  const guides = resources.filter((g) => g.data.frontmatter.contentType === 'guides');
+  const content = await getResources(preview, previewData, CONTENT_PATH);
+  const guides = content.filter((g) => g.data.frontmatter.contentType === 'topics');
   if (preview) {
     // get data from github
     const file = await getGithubPreviewProps({
@@ -85,7 +85,6 @@ export const getStaticProps = async function ({ preview, previewData }) {
           ...featGuidesFile.props.file,
         },
         guides,
-        documentation,
         preview,
       },
     };
@@ -104,7 +103,6 @@ export const getStaticProps = async function ({ preview, previewData }) {
         data: (await import('../data/featuredGuides.json')).default,
       },
       guides,
-      documentation,
     },
   };
 };

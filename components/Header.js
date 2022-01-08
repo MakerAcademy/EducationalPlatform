@@ -6,17 +6,27 @@ import { Icon } from '@makerdao/dai-ui-icons';
 import Banners from '@components/Banners';
 import { banner as bannerData } from '../data/banner.json';
 import { useUser } from '@auth0/nextjs-auth0';
-import NavDropdown from './NavDropdown';
+import NavDropdown from '@components/NavDropdown';
 
 const LINKS = [
   { url: '/news', name: 'News' },
-  { url: '/topics', name: 'Topics' },
   { url: '/programs', name: 'Programs' },
 ];
 
 const ACCOUNTLINKS = [
   { url: '/account', name: 'Settings' },
   { url: '/api/auth/logout', name: 'Logout' },
+];
+
+const DROPDOWN_LINKS = [
+  {
+    url: '/topics',
+    title: 'Topics',
+    items: [
+      { name: 'Finance', url: '/topics/finance' },
+      { name: 'Law', url: '/topics/law' },
+    ],
+  },
 ];
 
 const MobileMenu = ({ close, query, bannerData }) => {
@@ -135,6 +145,11 @@ const Header = ({ query, subnav, mobile, router }) => {
                       </NavLink>
                     </Link>
                   ))}
+
+                  {DROPDOWN_LINKS.map(({ url, title, items }) => (
+                    <NavDropdown query={query} url={url} title={title} items={items} />
+                  ))}
+
                   {user ? (
                     <NavDropdown query={query} title={'My Account'} items={ACCOUNTLINKS} />
                   ) : (

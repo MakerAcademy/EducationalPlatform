@@ -38,7 +38,7 @@ const useEditFrontmatterForm = (mdFile, preview) => {
         name: 'frontmatter.contentType',
         component: 'select',
         description: 'Categorizes the resource into different sections of the site.',
-        options: ['documentation', 'guides', 'security'],
+        options: ['documentation', 'topics', 'security'],
       },
       {
         label: 'Edit the group',

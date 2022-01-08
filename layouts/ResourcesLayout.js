@@ -17,11 +17,7 @@ const ResourcesLayout = ({
   children,
 }) => {
   return resourcePath === ContentTypes.DOCUMENTATION ? (
-    <SingleLayout
-      mobile={mobile}
-      subnav={<SubNav links={navData.navItems} router={router} />}
-      router={router}
-    >
+    <SingleLayout mobile={mobile} router={router}>
       <Grid columns={['auto', 'auto', '1fr 4fr 1fr']} gap="0">
         {sidebar || <Box />}
         <Box
@@ -43,7 +39,6 @@ const ResourcesLayout = ({
   ) : (
     <GuidesLayout
       mobile={mobile}
-      subnav={<SubNav links={navData.navItems} router={router} />}
       router={router}
       infobar={!mobile && <Infobar resourcePath={resourcePath} slug={slug} toc={toc} />}
     >
