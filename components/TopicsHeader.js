@@ -10,7 +10,7 @@ const TopicsHeader = ({
   onSearchChange,
 }) => {
   return (
-    <Flex sx={{ flexDirection: 'row', pl: 5, pt: 4, pb: 4 }}>
+    <Flex sx={{ borderTop: 'solid', borderWidth: 1, flexDirection: 'row', pl: 5, pt: 4, pb: 4 }}>
       <Heading mr={4} variant="topicsTitle">
         {title}
       </Heading>
