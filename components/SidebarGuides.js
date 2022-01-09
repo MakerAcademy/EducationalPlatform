@@ -33,7 +33,7 @@ const Sidebar = ({ resources, resourcePath, activeSlug }) => {
           title={resource.data.frontmatter.title}
           resourcePath={resourcePath}
           activeSlug={activeSlug}
-          slug={resource.data.frontmatter.slug}
+          slug={resource.data.frontmatter.titleURL}
         />
       ))}
     </Flex>

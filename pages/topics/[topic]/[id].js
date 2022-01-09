@@ -79,7 +79,7 @@ export const getStaticProps = async function ({ preview, previewData, params }) 
   let toc = '';
 
   const resources = await getResources(preview, previewData, 'content/topics/' + topic);
-  const resource = resources.find((r) => r.data.frontmatter.slug === id);
+  const resource = resources.find((r) => r.data.frontmatter.titleURL === id);
   const fileRelativePath = resource.fileRelativePath;
 
   if (preview) {
@@ -165,7 +165,7 @@ export const getStaticPaths = async function () {
     const { data } = matter(content.default);
     console.log('--------------------');
     console.log(data);
-    if (data.slug) acc.push({ params: { id: data.slug, topic: data.subtopic } });
+    if (data.titleURL) acc.push({ params: { id: data.titleURL, topic: data.subtopic } });
     return acc;
   }, []);
 

@@ -1,20 +1,16 @@
 ---
-title: Taxes Example 1
-description: Learn how to add a new collateral type to the Maker Protocol through seth
-topic: law
-subtopic: Taxes
-tags:
-  - seth
-  - new collateral type
-  - smart-contracts
-  - terminal
-  - mcd
-slug: evading-taxes
-contentType: guides
+title: The Kinds of Stablecoins
+description: This will teach you how stablecoins are collateralized.
+topic: Finance
+subtopic: Currency
+level: beginner
+estimatedTime: 10 - 15 minutes
+titleURL: the-kinds-of-stablecoins
+contentType: topics
 root: false
 ---
 
-# Evading Taxes 101
+# Add a new collateral type to Maker Protocol - Kovan
 
 **Level**: Advanced
 

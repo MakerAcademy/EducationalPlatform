@@ -1,20 +1,16 @@
 ---
-title: Securities Example 1
-description: Learn how to add a new collateral type to the Maker Protocol through seth
-topic: law
-subtopic: Securities
-tags:
-  - seth
-  - new collateral type
-  - smart-contracts
-  - terminal
-  - mcd
-slug: add-new-collateral-type-to-maker-protocol-kovan
-contentType: guides
+title: Is a DAO a Legal Entity?
+description: This will teach you how international governments view a DAO.
+topic: Law
+subtopic: Corporate
+level: advanced
+estimatedTime: 100 - 140 minutes
+titleURL: is-a-dao-a-legal-entity?
+contentType: topics
 root: false
 ---
 
-# Add a new collateral type to Maker Protocol - Kovan
+# Evading Taxes 101
 
 **Level**: Advanced
 

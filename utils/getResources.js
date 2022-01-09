@@ -38,7 +38,7 @@ const getResources = async (preview, previewData, contentDir) => {
       })
     );
 
-    const filtered = resources.filter((file) => file.data.frontmatter.slug);
+    const filtered = resources.filter((file) => file.data.frontmatter.titleURL);
 
     if (!preview) {
       for (let file of filtered) {
