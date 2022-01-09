@@ -95,8 +95,6 @@ const Header = ({ query, subnav, mobile, router }) => {
 
   const { user, error, isLoading } = useUser();
 
-  console.log(user);
-
   useEffect(() => {
     setMobileOpened(false);
   }, [router?.asPath]);

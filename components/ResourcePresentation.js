@@ -34,7 +34,7 @@ const ResourcePresentation = ({
   const group = navItems.find(({ slug }) => activeGroup === slug);
   const parent = resources?.find((r) => r.data.frontmatter.titleURL === activeParent)?.data
     .frontmatter;
-
+  console.log('Resource Presentation', contentType);
   return (
     <InlineForm form={form}>
       <BreadCrumbs

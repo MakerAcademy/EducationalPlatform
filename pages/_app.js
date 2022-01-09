@@ -24,7 +24,7 @@ class MyApp extends App {
       // authScope: 'repo', // for private repos
     });
     this.cms = new TinaCMS({
-      enabled: props.pageProps.preview,
+      enabled: !!props.pageProps.preview,
       apis: {
         github: client,
       },
@@ -91,6 +91,8 @@ class MyApp extends App {
 
 const enterEditMode = async () => {
   const token = localStorage.getItem('tinacms-github-token') || null;
+
+  console.log('token', token);
 
   const headers = new Headers();
 

@@ -20,6 +20,8 @@ const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, previe
   const [mobile, setMobile] = useState(false);
   const bpi = useBreakpointIndex({ defaultIndex: 2 });
 
+  console.log('GuidesPage Topic: ', topic);
+
   useEffect(() => {
     setMobile(bpi < 2);
   }, [bpi]);
@@ -64,7 +66,7 @@ const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, previe
       <ResourcePresentation
         file={file}
         relatedResources={relatedDocs}
-        contentType={topic}
+        contentType={ContentTypes.GUIDES}
         preview={preview}
         mobile={mobile}
         sharedContentfile={sharedContentfile}
@@ -74,7 +76,6 @@ const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, previe
 };
 
 export const getStaticProps = async function ({ preview, previewData, params }) {
-  console.log(params);
   const { topic, id } = params;
   let toc = '';
 
@@ -163,8 +164,6 @@ export const getStaticPaths = async function () {
   const paths = files.reduce((acc, file) => {
     const content = require(`../../../content/topics${file.replace(contentDir, '')}`);
     const { data } = matter(content.default);
-    console.log('--------------------');
-    console.log(data);
     if (data.titleURL) acc.push({ params: { id: data.titleURL, topic: data.subtopic } });
     return acc;
   }, []);

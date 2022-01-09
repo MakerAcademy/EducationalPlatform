@@ -69,12 +69,10 @@ const TOPICS_PATH = 'content/topics';
 
 export const getStaticProps = async function ({ preview, previewData, params }) {
   const { topic } = params;
+  console.log('getStaticParams Topic:', topic);
   const url = TOPICS_PATH + '/' + topic;
-  console.log(url);
   const resources = await getResources(preview, previewData, url);
-  console.log(resources.length);
   const posts = resources.filter((g) => g.data.frontmatter.contentType === 'topics');
-  console.log(posts.length);
   if (preview) {
     const file = (
       await getGithubPreviewProps({

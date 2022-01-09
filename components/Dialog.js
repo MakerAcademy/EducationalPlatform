@@ -11,7 +11,7 @@ const VideoModal = (props) => {
     <Flex>
       <Link href={'/?clicked=${true}'} as="/">
         <Flex sx={{ alignItems: 'center' }}>
-          <Icon sx={{ mr: 2 }} color="primary" name={'arrow_right'}></Icon>
+          <Icon sx={{ mr: 2 }} color="primary" name={'play'}></Icon>
           <ThemeLink>{props.cta}</ThemeLink>
         </Flex>
       </Link>

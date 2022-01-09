@@ -67,7 +67,6 @@ const CONTENT_PATH = 'content';
 export const getStaticProps = async function ({ preview, previewData }) {
   const content = await getResources(preview, previewData, CONTENT_PATH);
   const guides = content.filter((g) => g.data.frontmatter.contentType === 'topics');
-  console.log(guides.length);
   if (preview) {
     // get data from github
     const file = await getGithubPreviewProps({

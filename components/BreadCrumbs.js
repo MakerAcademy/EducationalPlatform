@@ -17,6 +17,7 @@ const Crumb = ({ url, text }) => (
 );
 
 const BreadCrumbs = ({ contentType, group, parent, title }) => {
+  console.log(contentType);
   return (
     <Flex sx={{ pt: 3, flexWrap: 'wrap' }}>
       <Crumb url={`/topics/${contentType}`} text={capitalize(contentType)} />

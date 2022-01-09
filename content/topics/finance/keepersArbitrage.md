@@ -1,5 +1,5 @@
 ---
-title: In-depth view of Maker's Keepers: Arbitrage
+title: In-depth view of Maker's Keepers and Arbitrage
 description: This will teach you how MakerDAO relies on arbitrage for a stable price.
 topic: Finance
 subtopic: Markets
