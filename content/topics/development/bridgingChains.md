@@ -1,5 +1,5 @@
 ---
-title: Scaling: Moving the Protocol to Another Chain
+title: Scaling - Moving the Protocol to Another Chain
 description: This will teach how to build interfaces between chains.
 topic: Development
 subtopic: Sidechains
