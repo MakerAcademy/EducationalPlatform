@@ -5,6 +5,7 @@ import { TinaProvider, TinaCMS } from 'tinacms';
 import { TinacmsGithubProvider } from 'react-tinacms-github';
 import { AlpacaGitHubClient } from '../utils/githubClient';
 import { NextGithubMediaStore } from 'next-tinacms-github';
+import { UserProvider } from '@auth0/nextjs-auth0';
 import theme from '../theme';
 import { GlobalStyles as TinaStyles } from '@tinacms/styles';
 
@@ -23,7 +24,7 @@ class MyApp extends App {
       // authScope: 'repo', // for private repos
     });
     this.cms = new TinaCMS({
-      enabled: props.pageProps.preview,
+      enabled: !!props.pageProps.preview,
       apis: {
         github: client,
       },
@@ -78,7 +79,9 @@ class MyApp extends App {
             error={pageProps.error}
           >
             <TinaStyles />
-            <Component {...pageProps} />
+            <UserProvider>
+              <Component {...pageProps} />
+            </UserProvider>
           </TinacmsGithubProvider>
         </TinaProvider>
       </ThemeProvider>
@@ -88,6 +91,8 @@ class MyApp extends App {
 
 const enterEditMode = async () => {
   const token = localStorage.getItem('tinacms-github-token') || null;
+
+  console.log('token', token);
 
   const headers = new Headers();
 

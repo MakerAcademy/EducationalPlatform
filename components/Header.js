@@ -5,15 +5,37 @@ import Link from 'next/link';
 import { Icon } from '@makerdao/dai-ui-icons';
 import Banners from '@components/Banners';
 import { banner as bannerData } from '../data/banner.json';
+import { useUser } from '@auth0/nextjs-auth0';
+import NavDropdown from '@components/NavDropdown';
 
 const LINKS = [
-  { url: '/documentation', name: 'Documentation' },
-  { url: '/guides', name: 'Guides' },
-  { url: '/security', name: 'Security' },
+  { url: '/news', name: 'News' },
+  { url: '/programs', name: 'Programs' },
+];
+
+const ACCOUNTLINKS = [
+  { url: '/account', name: 'Settings' },
+  { url: '/api/auth/logout', name: 'Logout' },
+];
+
+const DROPDOWN_LINKS = [
+  {
+    url: '/topics',
+    title: 'Topics',
+    items: [
+      { name: 'Finance', url: '/topics/finance' },
+      { name: 'Law', url: '/topics/law' },
+      { name: 'Business', url: '/topics/business' },
+      { name: 'Development', url: '/topics/development' },
+    ],
+  },
 ];
 
 const MobileMenu = ({ close, query, bannerData }) => {
-  const [{ linkText, url, text }] = bannerData;
+  const [{ linkText, url, text }] = null;
+
+  const { user, error, isLoading } = useUser();
+
   return (
     <Container
       sx={{
@@ -73,6 +95,8 @@ const MobileMenu = ({ close, query, bannerData }) => {
 const Header = ({ query, subnav, mobile, router }) => {
   const [mobileOpened, setMobileOpened] = useState(false);
 
+  const { user, error, isLoading } = useUser();
+
   useEffect(() => {
     setMobileOpened(false);
   }, [router?.asPath]);
@@ -81,10 +105,10 @@ const Header = ({ query, subnav, mobile, router }) => {
       sx={{ width: '100%', zIndex: 1, position: [mobileOpened ? 'fixed' : undefined, undefined] }}
     >
       {mobileOpened ? (
-        <MobileMenu close={() => setMobileOpened(false)} bannerData={bannerData} />
+        <MobileMenu close={() => setMobileOpened(false)} />
       ) : (
         <>
-          {!mobile && <Banners bannerData={bannerData} />}
+          {/* {!mobile && <Banners bannerData={bannerData} />} */}
           <Container as="header" mt={[0, 2]} sx={{ bg: 'background' }}>
             <Flex
               sx={{
@@ -121,6 +145,32 @@ const Header = ({ query, subnav, mobile, router }) => {
                       </NavLink>
                     </Link>
                   ))}
+
+                  {DROPDOWN_LINKS.map(({ url, title, items }) => (
+                    <NavDropdown query={query} url={url} title={title} items={items} />
+                  ))}
+
+                  {user ? (
+                    <NavDropdown query={query} title={'My Account'} items={ACCOUNTLINKS} />
+                  ) : (
+                    <a
+                      href="/api/auth/login"
+                      key={'Login/Sign-Up'}
+                      style={{ textDecoration: 'none' }}
+                    >
+                      <NavLink
+                        key={'Login/Sign-Up'}
+                        sx={{
+                          display: ['none', 'none', 'block'],
+                          pr: 4,
+                          '&:last-child': { pr: [null, 0] },
+                        }}
+                        variant="links.nav"
+                      >
+                        {'Login/Sign-Up'}
+                      </NavLink>
+                    </a>
+                  )}
                 </Flex>
                 <IconButton sx={{ display: ['block', 'block', 'none'], cursor: 'pointer' }}>
                   <Icon

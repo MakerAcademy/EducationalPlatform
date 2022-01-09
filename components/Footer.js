@@ -14,48 +14,26 @@ import { Icon } from '@makerdao/dai-ui-icons';
 
 const links = [
   [
-    'Resources',
+    'About',
     [
-      ['Documentation', '/documentation'],
-      ['Guides', '/guides'],
-      ['Security', '/security'],
+      ['Our Team', '/team'],
+      ['Careers', '/careers'],
+      ['Our Finances', '/finances'],
     ],
   ],
   [
-    'Documentation',
+    'Help',
     [
-      ['Introduction', '/documentation/introduction-to-the-maker-protocol'],
-      ['Smart Contracts', '/documentation/introduction-to-core-module'],
-      ['Auctions', '/documentation/the-auctions-of-the-maker-protocol'],
-      ['Keepers', '/documentation/introduction-to-auction-keepers'],
-      ['SDKs', '/documentation/introduction-to-dai-js'],
-      ['CLIs', '/documentation/mcd-cli'],
-      ['Glossary', '/documentation/mcd-glossaries'],
+      ['FAQs', '/faqs'],
+      ['Community', '/community'],
     ],
   ],
   [
-    'Security',
+    'Affiliated Resources',
     [
-      ['Introduction', '/security/multi-collateral-dai-security'],
-      ['Audit Reports', '/security/mcd-security-audits'],
-      ['Bug Bounty Program', '/security/bug-bounty-program'],
-      ['Formal Verification', '/security/formal-verification'],
-    ],
-  ],
-  [
-    'Libraries',
-    [
-      ['Dai.js', '/documentation/introduction-to-dai-js'],
-      ['Pymaker', '/documentation/pymaker'],
-    ],
-  ],
-  [
-    'Community',
-    [
-      ['Comm Dev Portal', 'https://community-development.makerdao.com/en/'],
-      ['Blog', 'https://blog.makerdao.com/'],
-      ['Forum', 'https://forum.makerdao.com/c/devs/19'],
-      ['Events', 'https://makerdao.com/en/events'],
+      ['MakerDAO Website', '/security/multi-collateral-dai-security'],
+      ['MakerDAO Forum', '/security/mcd-security-audits'],
+      ['MakerDAO Discord', '/security/bug-bounty-program'],
     ],
   ],
 ];
@@ -126,15 +104,6 @@ const Footer = () => {
           <Flex sx={{ pb: 2 }}>
             <IconLink name="maker_full" url="https://www.makerdao.com" width={127} />
           </Flex>
-          <Flex>
-            <Flex sx={{ pr: 4 }}>
-              <IconLink name="github" url="https://github.com/makerdao/" />
-            </Flex>
-            <Flex>
-              <IconLink name="rocketchat" url="https://chat.makerdao.com/channel/dev" />
-            </Flex>
-          </Flex>
-          <ColorModeToggle />
         </Flex>
         {links.map(([title, content]) => {
           return <Section key={title} title={title} content={content} />;

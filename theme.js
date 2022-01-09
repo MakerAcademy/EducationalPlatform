@@ -51,6 +51,10 @@ const theme = {
       variant: 'text.heading',
       fontSize: [8, 10],
     },
+    megaSubHeading: {
+      variant: 'text.heading',
+      fontSize: [6, 8],
+    },
     largeText: {
       fontSize: [4, 5],
       color: 'text',
@@ -59,6 +63,10 @@ const theme = {
       ...makerTheme.text.caps,
       fontFamily: 'heading',
       fontWeight: 'body',
+    },
+    topicsTitle: {
+      variant: 'text.heading',
+      fontSize: [8, 10],
     },
     plainText: {
       fontFamily: 'heading',

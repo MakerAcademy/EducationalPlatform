@@ -10,68 +10,50 @@ import { useGithubToolbarPlugins, useGithubJsonForm } from 'react-tinacms-github
 import { InlineForm } from 'react-tinacms-inline';
 import SingleLayout from '@layouts/SingleLayout.js';
 import useCreateDocument from '@hooks/useCreateDocument';
-import useBannerForm from '@hooks/useBannerForm';
 import useFeaturedGuidesForm from '@hooks/useFeaturedGuidesForm';
 import GuideList from '@components/GuideList';
-import CommunityCta from '@components/CommunityCta';
-import AboutThisSite from '@components/AboutThisSite';
 import PageLead from '@components/PageLead';
-import IntroText from '@components/IntroText';
-import DocumentationList from '@components/DocumentationList';
-import SecurityFeatures from '@components/SecurityFeatures';
-import NewsletterCallout from '@components/NewsletterCallout';
-import LibrariesSdks from '@components/LibrariesSdks';
 import { getResources } from '@utils';
 import { landingPageFormOptions } from '../data/formOptions';
+import Modal from 'react-modal';
 
-const Page = ({ file, guides, documentation, bannerFile, featGuidesFile, preview }) => {
+Modal.setAppElement('#__next');
+
+const Page = ({ file, guides, featGuidesFile, preview }) => {
   const [mobile, setMobile] = useState(false);
   const bpi = useBreakpointIndex({ defaultIndex: 2 });
   const router = useRouter();
-
+  // const [topic, setTopic] = useState('');
   const [data, form] = useGithubJsonForm(file, landingPageFormOptions);
-  const [bannerData, bannerForm] = useBannerForm(bannerFile, preview);
   const [featGuidesData, featGuidesForm] = useFeaturedGuidesForm(featGuidesFile, preview);
 
-  useFormScreenPlugin(bannerForm);
   useFormScreenPlugin(featGuidesForm);
   usePlugin(form);
   useGithubToolbarPlugins();
-  useCreateDocument([...guides, ...documentation]);
+  useCreateDocument([...guides]);
 
   useEffect(() => {
     setMobile(bpi < 2);
   }, [bpi]);
 
   const featuredGuides = featGuidesData.featuredGuides.map((slug) =>
-    guides.find(({ data }) => data.frontmatter.slug === slug)
+    guides.find(({ data }) => data.frontmatter.titleURL === slug)
   );
 
   return (
-    <SingleLayout bannerData={bannerData.banner} mobile={mobile} router={router}>
+    <SingleLayout mobile={mobile} router={router}>
       <Head>
-        <title>Maker Protocol Developer Portal</title>
+        <title>Maker Academy</title>
       </Head>
       <InlineForm form={form}>
         <Grid sx={{ rowGap: 6 }}>
-          <PageLead cta="Start learning about the Maker Protocol" mobile={mobile} />
-          <GuideList title="Featured Guides" path="guides" guides={featuredGuides} />
-          <IntroText mobile={mobile} />
-          <Grid>
-            <Container>
-              <Heading variant="megaHeading">
-                Get Started&nbsp;<span sx={{ color: 'onBackgroundMuted' }}>With</span>
-              </Heading>
-            </Container>
-            <Grid sx={{ rowGap: 5 }}>
-              <DocumentationList />
-              <LibrariesSdks />
-            </Grid>
-          </Grid>
-          <SecurityFeatures />
-          <CommunityCta mobile={mobile} />
-          <AboutThisSite preview={preview} />
-          <NewsletterCallout />
+          <PageLead
+            cta="Interested? Watch Maker Academy's introduction video here!"
+            mobile={mobile}
+          />
+          <GuideList title="Featured Programs" path="guides" guides={featuredGuides} />
+          <GuideList title="Featured Topics" path="topics" guides={featuredGuides} />
+          <GuideList title="Recent MakerDAO News" path="guides" guides={featuredGuides} />
         </Grid>
       </InlineForm>
     </SingleLayout>
@@ -81,24 +63,15 @@ const Page = ({ file, guides, documentation, bannerFile, featGuidesFile, preview
 /**
  * Fetch data with getStaticProps based on 'preview' mode
  */
+const CONTENT_PATH = 'content';
 export const getStaticProps = async function ({ preview, previewData }) {
-  
-  console.log('preview', preview);
-  console.log('previewData', previewData);
-  const resources = await getResources(preview, previewData, 'content/resources');
-  const documentation = resources.filter((g) => g.data.frontmatter.contentType === 'documentation');
-  const guides = resources.filter((g) => g.data.frontmatter.contentType === 'guides');
+  const content = await getResources(preview, previewData, CONTENT_PATH);
+  const guides = content.filter((g) => g.data.frontmatter.contentType === 'topics');
   if (preview) {
     // get data from github
     const file = await getGithubPreviewProps({
       ...previewData,
       fileRelativePath: 'data/landingPage.json',
-      parse: parseJson,
-    });
-
-    const bannerFile = await getGithubPreviewProps({
-      ...previewData,
-      fileRelativePath: 'data/banner.json',
       parse: parseJson,
     });
 
@@ -111,14 +84,10 @@ export const getStaticProps = async function ({ preview, previewData }) {
     return {
       props: {
         file: { ...file.props.file },
-        bannerFile: {
-          ...bannerFile.props.file,
-        },
         featGuidesFile: {
           ...featGuidesFile.props.file,
         },
         guides,
-        documentation,
         preview,
       },
     };
@@ -132,16 +101,11 @@ export const getStaticProps = async function ({ preview, previewData }) {
         fileRelativePath: 'data/landingPage.json',
         data: (await import('../data/landingPage.json')).default,
       },
-      bannerFile: {
-        fileRelativePath: 'data/banner.json',
-        data: (await import('../data/banner.json')).default,
-      },
       featGuidesFile: {
         fileRelativePath: 'data/featuredGuides.json',
         data: (await import('../data/featuredGuides.json')).default,
       },
       guides,
-      documentation,
     },
   };
 };

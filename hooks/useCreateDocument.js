@@ -26,7 +26,7 @@ const useCreateDocument = (resources) => {
             }
             if (
               resources.some(
-                (post) => post.data.frontmatter.slug === slugify(value, { lower: true })
+                (post) => post.data.frontmatter.titleURL === slugify(value, { lower: true })
               )
             ) {
               return 'Sorry the document title must be unique';
@@ -68,7 +68,7 @@ const useCreateDocument = (resources) => {
           name: 'contentType',
           label: 'Content Type',
           description: 'Select the content type for this resource.',
-          options: ['documentation', 'guides', 'security'],
+          options: ['documentation', 'topics', 'security'],
           required: true,
           validate(value, allValues, meta, field) {
             if (!value) {

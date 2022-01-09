@@ -1,4 +1,4 @@
-# Maker Protocol Developer Portal
+# Maker Academy
 ## Local Development
 For development run:
 

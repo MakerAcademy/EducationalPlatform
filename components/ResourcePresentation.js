@@ -32,8 +32,9 @@ const ResourcePresentation = ({
   const contributors = file.data.frontmatter.contributors;
   const [activeGroup, activeParent] = useStore((state) => [state.activeGroup, state.activeParent]);
   const group = navItems.find(({ slug }) => activeGroup === slug);
-  const parent = resources?.find((r) => r.data.frontmatter.slug === activeParent)?.data.frontmatter;
-
+  const parent = resources?.find((r) => r.data.frontmatter.titleURL === activeParent)?.data
+    .frontmatter;
+  console.log('Resource Presentation', contentType);
   return (
     <InlineForm form={form}>
       <BreadCrumbs

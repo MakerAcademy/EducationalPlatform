@@ -17,10 +17,10 @@ const Crumb = ({ url, text }) => (
 );
 
 const BreadCrumbs = ({ contentType, group, parent, title }) => {
+  console.log(contentType);
   return (
     <Flex sx={{ pt: 3, flexWrap: 'wrap' }}>
-      <Crumb url="/" text="Home" />
-      <Crumb url={`/${contentType}`} text={capitalize(contentType)} />
+      <Crumb url={`/topics/${contentType}`} text={capitalize(contentType)} />
       {group && <Crumb url={`${group.url}`} text={group.name} />}
       {parent && <Crumb url={`${parent.slug}`} text={parent.title} />}
       <Text variant="caps" sx={{ color: 'textMuted' }}>
