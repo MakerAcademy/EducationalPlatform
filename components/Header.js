@@ -25,6 +25,8 @@ const DROPDOWN_LINKS = [
     items: [
       { name: 'Finance', url: '/topics/finance' },
       { name: 'Law', url: '/topics/law' },
+      { name: 'Business', url: '/topics/business' },
+      { name: 'Development', url: '/topics/development' },
     ],
   },
 ];
