@@ -18,7 +18,7 @@ const GuideList = ({ guides, title, path }) => {
           >
             <Heading variant="largeHeading">{title}</Heading>
 
-            <Link href={'/programs'} passHref>
+            <Link href={'/guides'} passHref>
               <Flex sx={{ ml: 'auto', alignItems: 'center' }}>
                 <Icon sx={{ mr: 2 }} color="primary" name={'arrow_right'}></Icon>
                 <ThemeLink sx={{ color: 'text', cursor: 'pointer' }}>View All</ThemeLink>

@@ -15,6 +15,9 @@ import GuideList from '@components/GuideList';
 import PageLead from '@components/PageLead';
 import { getResources } from '@utils';
 import { landingPageFormOptions } from '../data/formOptions';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#__next');
 
 const Page = ({ file, guides, featGuidesFile, preview }) => {
   const [mobile, setMobile] = useState(false);
@@ -36,7 +39,6 @@ const Page = ({ file, guides, featGuidesFile, preview }) => {
   const featuredGuides = featGuidesData.featuredGuides.map((slug) =>
     guides.find(({ data }) => data.frontmatter.slug === slug)
   );
-  console.log(featuredGuides);
 
   return (
     <SingleLayout mobile={mobile} router={router}>
@@ -49,9 +51,9 @@ const Page = ({ file, guides, featGuidesFile, preview }) => {
             cta="Interested? Watch Maker Academy's introduction video here!"
             mobile={mobile}
           />
-          <GuideList title="Featured Programs" path="guides" guides={featuredGuides} />
-          <GuideList title="Featured Topics" path="guides" guides={featuredGuides} />
-          <GuideList title="Recent MakerDAO News" path="guides" guides={featuredGuides} />
+          <GuideList title="Featured Programs" path="topics/law" guides={featuredGuides} />
+          <GuideList title="Featured Topics" path="topics/law" guides={featuredGuides} />
+          <GuideList title="Recent MakerDAO News" path="topics/law" guides={featuredGuides} />
         </Grid>
       </InlineForm>
     </SingleLayout>

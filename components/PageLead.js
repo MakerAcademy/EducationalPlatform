@@ -1,9 +1,12 @@
-import { Container, jsx, Heading, Text, Flex, Link as ThemeLink } from 'theme-ui';
+import { Container, jsx, Heading, Text, Flex, Link as ThemeLink, Button } from 'theme-ui';
 import { InlineText } from 'react-tinacms-inline';
 import Link from 'next/link';
 import { Icon } from '@makerdao/dai-ui-icons';
+import { useState } from 'react';
+import VideoModal from './Dialog';
 
 const PageLead = ({ cta, mobile }) => {
+  const [showModal, setShowModal] = useState(false);
   return (
     <Container>
       <Flex sx={{ py: [4, 4, 6], flexDirection: 'column', position: 'relative' }}>
@@ -90,12 +93,48 @@ const PageLead = ({ cta, mobile }) => {
           >
             <InlineText name="subtext" />
           </Text>
-          <Link href="https://www.youtube.com/watch?v=BWqcw4lWoBM">
+          <Link href="/">
             <Flex sx={{ alignItems: 'center' }}>
               <Icon sx={{ mr: 2 }} color="primary" name={'arrow_right'}></Icon>
               <ThemeLink>{cta}</ThemeLink>
             </Flex>
           </Link>
+          <VideoModal
+            cta={cta}
+            style={{
+              overlay: {
+                position: 'fixed',
+                zIndex: 1020,
+                top: 0,
+                left: 0,
+                width: '560',
+                height: '315',
+                background: 'rgba(0, 0, 0, 0.5)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              },
+              content: {
+                top: 'auto',
+                left: 'auto',
+                right: 'auto',
+                bottom: 'auto',
+                width: '560',
+                padding: '0',
+              },
+            }}
+            children={
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube-nocookie.com/embed/BWqcw4lWoBM?controls=0"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            }
+          />
         </Flex>
       </Flex>
     </Container>
