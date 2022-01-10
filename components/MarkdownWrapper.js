@@ -94,7 +94,6 @@ const Link = ({ href, children }) => (
 );
 
 const MarkdownWrapper = ({ source }) => {
-  console.log(source);
   return (
     <BaseStyles>
       <ReactMarkdown

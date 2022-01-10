@@ -13,10 +13,14 @@ import SidebarGuides from '@components/SidebarGuides';
 import ResourcePresentation from '@components/ResourcePresentation';
 import { createToc, getResources } from '@utils';
 import { ContentTypes } from '@utils/constants';
+import { useGithubToolbarPlugins } from 'react-tinacms-github';
+import useCreateDocument from '@hooks/useCreateDocument';
 
 const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, preview, id, toc }) => {
   const [navData, navForm] = useSubNavForm(navFile, preview);
   useFormScreenPlugin(navForm);
+  useGithubToolbarPlugins();
+  useCreateDocument();
   const router = useRouter();
   const [mobile, setMobile] = useState(false);
   const bpi = useBreakpointIndex({ defaultIndex: 2 });
@@ -27,14 +31,14 @@ const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, previe
 
   const moduleResources = resources?.filter(
     (r) =>
-      r.data.frontmatter.components?.some((c) => file.data.frontmatter.components.includes(c)) &&
-      r.data.frontmatter.contentType === ContentTypes.GUIDES
+      r.data.frontmatter.components?.some((c) => file.data.frontmatter.topic.includes(c)) &&
+      r.data.frontmatter.contentType === ContentTypes.TOPIC
   );
 
   const relatedDocs = resources?.filter(
     (r) =>
-      r.data.frontmatter.components?.some((c) => file.data.frontmatter.components.includes(c)) &&
-      r.data.frontmatter.contentType === ContentTypes.DOCUMENTATION
+      r.data.frontmatter.components?.some((c) => file.data.frontmatter.topic.includes(c)) &&
+      r.data.frontmatter.contentType === ContentTypes.TOPIC
   );
 
   const title = file?.data?.frontmatter?.title;

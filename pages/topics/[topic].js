@@ -8,6 +8,7 @@ import { ContentTypes } from '@utils/constants';
 import ContentGrid from '@components/ContentGrid';
 import TopicsHeader from '@components/TopicsHeader';
 import WrapperLayout from '@layouts/WrapperLayout';
+import Contributors from '../../components/ContributeCta';
 
 const walk = (resources, array) => {
   array.forEach((item) => {
@@ -71,7 +72,7 @@ export const getStaticProps = async function ({ preview, previewData, params }) 
   const { topic } = params;
   const url = TOPICS_PATH + '/' + topic;
   const resources = await getResources(preview, previewData, url);
-  const posts = resources.filter((g) => g.data.frontmatter.contentType === 'topics');
+  const posts = resources.filter((g) => g.data.frontmatter.contentType === ContentTypes.TOPIC);
   if (preview) {
     const file = (
       await getGithubPreviewProps({
@@ -85,6 +86,7 @@ export const getStaticProps = async function ({ preview, previewData, params }) 
       props: {
         ...file,
         posts,
+        topic,
       },
     };
   }
@@ -104,7 +106,17 @@ export const getStaticProps = async function ({ preview, previewData, params }) 
 };
 
 export const getStaticPaths = async function () {
-  const paths = [];
+  const fg = require('fast-glob');
+  const contentDir = 'content/topics';
+  const files = await fg(`${contentDir}/**/*.md`);
+
+  const paths = files.reduce((acc, file) => {
+    const content = require(`../../content/topics${file.replace(contentDir, '')}`);
+    const { data } = matter(content.default);
+    if (data.titleURL) acc.push({ params: { titleURL: data.titleURL, topic: data.topic } });
+    return acc;
+  }, []);
+
   return {
     fallback: true,
     paths,

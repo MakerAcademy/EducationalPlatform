@@ -6,7 +6,7 @@ import { MarkdownFieldPlugin } from 'react-tinacms-editor';
 import { toMarkdownString } from '@utils';
 import { removeInvalidChars } from '../utils/removeInvalidChars';
 
-const useCreateDocument = (resources) => {
+const useCreateDocument = () => {
   const cms = useCMS();
   cms.plugins.add(MarkdownFieldPlugin);
 
@@ -23,13 +23,6 @@ const useCreateDocument = (resources) => {
           validate(value, allValues, meta, field) {
             if (!value) {
               return 'A title is required';
-            }
-            if (
-              resources.some(
-                (post) => post.data.frontmatter.titleURL === slugify(value, { lower: true })
-              )
-            ) {
-              return 'Sorry the document title must be unique';
             }
           },
         },

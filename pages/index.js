@@ -26,12 +26,11 @@ const Page = ({ file, guides, featGuidesFile, preview }) => {
   // const [topic, setTopic] = useState('');
   const [data, form] = useGithubJsonForm(file, landingPageFormOptions);
   const [featGuidesData, featGuidesForm] = useFeaturedGuidesForm(featGuidesFile, preview);
-  console.log(featGuidesData);
 
   useFormScreenPlugin(featGuidesForm);
   usePlugin(form);
   useGithubToolbarPlugins();
-  useCreateDocument([...guides]);
+  useCreateDocument();
 
   useEffect(() => {
     setMobile(bpi < 2);
