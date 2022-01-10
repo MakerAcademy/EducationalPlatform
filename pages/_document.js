@@ -7,7 +7,7 @@ const GA_TRACKING_ID = process.env.GA_TRACKING_ID;
 
 const TITLE = 'Maker Academy';
 const DESCRIPTION = 'Resources for developing on the Maker Protocol';
-const URL = 'https://developer-portal-mkr-js-prod.vercel.app';
+const URL = 'http://localhost:3000';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {

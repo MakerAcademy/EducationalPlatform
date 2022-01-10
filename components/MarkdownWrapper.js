@@ -5,7 +5,6 @@ import ReactMarkdown from 'react-markdown';
 import { jsx, Image, Text, Flex, Grid, Link as ThemeLink } from 'theme-ui';
 import slugify from 'slugify';
 import CodeContainer from '@components/CodeContainer';
-import { InlineForm } from 'react-tinacms-inline';
 
 const $ = createElement;
 

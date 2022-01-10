@@ -64,7 +64,7 @@ const useCreateDocument = () => {
           },
         },
         {
-          component: 'tags',
+          component: 'text',
           name: 'subtopic',
           label: 'subtopic',
           description: 'Provide one subtopic which this document refers to',

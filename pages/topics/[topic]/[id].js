@@ -15,12 +15,18 @@ import { createToc, getResources } from '@utils';
 import { ContentTypes } from '@utils/constants';
 import { useGithubToolbarPlugins } from 'react-tinacms-github';
 import useCreateDocument from '@hooks/useCreateDocument';
+import useEditFrontmatterForm from '../../../hooks/useEditFrontmatterForm';
+import { usePlugins } from 'tinacms';
 
 const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, preview, id, toc }) => {
   const [navData, navForm] = useSubNavForm(navFile, preview);
+
   useFormScreenPlugin(navForm);
   useGithubToolbarPlugins();
   useCreateDocument();
+  const [data, form] = useEditFrontmatterForm(file, preview);
+  usePlugin(form);
+
   const router = useRouter();
   const [mobile, setMobile] = useState(false);
   const bpi = useBreakpointIndex({ defaultIndex: 2 });
@@ -63,7 +69,7 @@ const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, previe
       <ResourcePresentation
         file={file}
         relatedResources={relatedDocs}
-        contentType={ContentTypes.GUIDES}
+        contentType={ContentTypes.TOPIC}
         preview={preview}
         mobile={mobile}
         sharedContentfile={sharedContentfile}
@@ -155,13 +161,13 @@ export const getStaticProps = async function ({ preview, previewData, params }) 
 
 export const getStaticPaths = async function () {
   const fg = require('fast-glob');
-  const contentDir = 'content/topics';
+  const contentDir = `content/topics`;
   const files = await fg(`${contentDir}/**/*.md`);
 
   const paths = files.reduce((acc, file) => {
     const content = require(`../../../content/topics${file.replace(contentDir, '')}`);
     const { data } = matter(content.default);
-    if (data.titleURL) acc.push({ params: { id: data.titleURL, topic: data.subtopic } });
+    if (data.titleURL) acc.push({ params: { id: data.titleURL, topic: data.topic } });
     return acc;
   }, []);
 
