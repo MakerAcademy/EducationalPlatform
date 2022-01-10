@@ -59,7 +59,7 @@ const useCreateDocument = (resources) => {
         },
         {
           component: 'select',
-          name: 'Topic',
+          name: 'topic',
           label: 'Topic',
           description: 'Select the content topic for this resource.',
           options: ['business', 'development', 'finance', 'law'],
@@ -79,19 +79,6 @@ const useCreateDocument = (resources) => {
           validate(value, allValues, meta, field) {
             if (!value) {
               return 'Subtopic is required';
-            }
-          },
-        },
-        {
-          component: 'select',
-          name: 'level',
-          label: 'level',
-          description: 'Choose a difficulty level for the document',
-          options: ['beginner', 'intermediate', 'advanced'],
-          required: true,
-          validate(value, allValues, meta, field) {
-            if (!value) {
-              return 'Difficulty level is required';
             }
           },
         },
