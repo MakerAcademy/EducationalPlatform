@@ -27,7 +27,6 @@ const ResourcePresentation = ({
 
   const [data, form] = useGithubJsonForm(sharedContentfile);
   usePlugin(form);
-  useGithubToolbarPlugins();
 
   const contributors = file.data.frontmatter.contributors;
   const [activeGroup, activeParent] = useStore((state) => [state.activeGroup, state.activeParent]);
