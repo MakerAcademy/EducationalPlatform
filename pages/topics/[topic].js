@@ -22,10 +22,14 @@ const walk = (resources, array) => {
 };
 
 const NO_FILTER = 'All';
-const categories = ['Subtopic', 'Time', 'Author', 'Medium', 'Difficulty Level'];
+// const categories = ['Subtopic', 'Time', 'Author', 'Medium', 'Difficulty Level'];
 const TopicPage = ({ posts, topic }) => {
-  var dict = {
-    Subtopics: {},
+  var categories = {
+    Subtopics: [],
+    Time: [],
+    Author: [],
+    Medium: [],
+    Difficulty: [],
   };
   const [filter, setFilter] = useState(NO_FILTER);
   const [searchChange, onSearchChange] = useState('');
