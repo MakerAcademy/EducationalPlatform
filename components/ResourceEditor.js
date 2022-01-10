@@ -12,6 +12,7 @@ const ResourceEditor = ({ file, preview, cms }) => {
   const [fmData, fmForm] = useEditFrontmatterForm(file, preview);
 
   const [data, form] = useGithubMarkdownForm(file);
+  console.log(data);
   usePlugin(form);
   return (
     <InlineForm form={form}>

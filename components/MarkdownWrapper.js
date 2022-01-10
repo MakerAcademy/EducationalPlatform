@@ -5,6 +5,8 @@ import ReactMarkdown from 'react-markdown';
 import { jsx, Image, Text, Flex, Grid, Link as ThemeLink } from 'theme-ui';
 import slugify from 'slugify';
 import CodeContainer from '@components/CodeContainer';
+import { InlineForm } from 'react-tinacms-inline';
+
 const $ = createElement;
 
 const ImageWrapper = ({ alt, src, title }) => {
@@ -91,20 +93,23 @@ const Link = ({ href, children }) => (
   </ThemeLink>
 );
 
-const MarkdownWrapper = ({ source }) => (
-  <BaseStyles>
-    <ReactMarkdown
-      source={source}
-      renderers={{
-        code: CodeContainer,
-        heading: Heading,
-        image: ImageWrapper,
-        list: List,
-        listItem: ListItem,
-        link: Link,
-      }}
-    />
-  </BaseStyles>
-);
+const MarkdownWrapper = ({ source }) => {
+  console.log(source);
+  return (
+    <BaseStyles>
+      <ReactMarkdown
+        source={source}
+        renderers={{
+          code: CodeContainer,
+          heading: Heading,
+          image: ImageWrapper,
+          list: List,
+          listItem: ListItem,
+          link: Link,
+        }}
+      />
+    </BaseStyles>
+  );
+};
 
 export default MarkdownWrapper;

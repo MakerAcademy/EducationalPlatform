@@ -21,9 +21,6 @@ const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, previe
   const [mobile, setMobile] = useState(false);
   const bpi = useBreakpointIndex({ defaultIndex: 2 });
 
-  console.log('GuidesPage Topic: ', topic);
-  console.log('GuidesPage ID', id);
-
   useEffect(() => {
     setMobile(bpi < 2);
   }, [bpi]);
@@ -72,7 +69,6 @@ const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, previe
 };
 
 export const getStaticProps = async function ({ preview, previewData, params }) {
-  console.log('params: ', params);
   const { topic, id } = params;
   let toc = '';
 

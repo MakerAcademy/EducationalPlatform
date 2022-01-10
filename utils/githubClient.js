@@ -14,9 +14,6 @@ export class AlpacaGitHubClient extends GithubClient {
   async fetchFile(filePath, decoded = true) {
     const repo = this.workingRepoFullName;
     const branch = this.branchName;
-    console.log('filepath:', filepath);
-    console.log('pullng repo:', repo);
-    console.log('pulling branch:', branch);
     const request = await this.req({
       url: `https://api.github.com/repos/${repo}/contents/${filePath}?ref=${branch}`,
       method: 'GET',
