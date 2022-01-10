@@ -69,7 +69,6 @@ const TOPICS_PATH = 'content/topics';
 
 export const getStaticProps = async function ({ preview, previewData, params }) {
   const { topic } = params;
-  console.log('getStaticParams Topic:', topic);
   const url = TOPICS_PATH + '/' + topic;
   const resources = await getResources(preview, previewData, url);
   const posts = resources.filter((g) => g.data.frontmatter.contentType === 'topics');

@@ -5,7 +5,7 @@ topic: Law
 subtopic: Corporate
 level: advanced
 estimatedTime: 100 - 140 minutes
-titleURL: is-a-dao-a-legal-entity?
+titleURL: is-a-dao-a-legal-entity
 contentType: topics
 root: false
 ---
@@ -16,7 +16,7 @@ root: false
 
 **Estimated Time**: 90 - 120 minutes
 
-- [Add a new collateral type to Maker Protocol - Kovan](#add-a-new-collateral-type-to-maker-protocol---kovan)
+- [Evading Taxes 101](#evading-taxes-101)
   - [Overview](#overview)
   - [Learning Objectives](#learning-objectives)
   - [Pre-requisites](#pre-requisites)

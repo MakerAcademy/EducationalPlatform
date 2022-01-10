@@ -3,6 +3,8 @@ export const ContentTypes = {
   GUIDES: 'guides',
   ECOSYSTEM: 'ecosystem',
   SECURITY: 'security',
+  TOPIC: 'topics',
+  PROGRAM: 'programs',
 };
 
 export const EcosystemCategories = {
@@ -12,7 +14,7 @@ export const EcosystemCategories = {
   tools: 'Tools',
 };
 
-export const GITHUB_EDIT_LINK = 'https://github.com/makerdao/developer-portal/edit/master/';
+export const GITHUB_EDIT_LINK = 'https://github.com/MakerAcademy/EducationalPlatform/edit/master';
 
 export const SUBSCRIBERS_ENDPOINT = 'https://api.buttondown.email/v1/subscribers';
 

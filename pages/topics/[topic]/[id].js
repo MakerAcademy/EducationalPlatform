@@ -22,6 +22,7 @@ const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, previe
   const bpi = useBreakpointIndex({ defaultIndex: 2 });
 
   console.log('GuidesPage Topic: ', topic);
+  console.log('GuidesPage ID', id);
 
   useEffect(() => {
     setMobile(bpi < 2);
@@ -53,13 +54,7 @@ const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, previe
       mobile={mobile}
       router={router}
       navData={navData}
-      sidebar={
-        <SidebarGuides
-          resources={moduleResources}
-          resourcePath={ContentTypes.GUIDES}
-          activeSlug={id}
-        />
-      }
+      sidebar={<SidebarGuides resources={moduleResources} resourcePath={ContentTypes.GUIDES} />}
     >
       <Head>
         <title>{title || 'Maker Academy'}</title>
@@ -77,6 +72,7 @@ const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, previe
 };
 
 export const getStaticProps = async function ({ preview, previewData, params }) {
+  console.log('params: ', params);
   const { topic, id } = params;
   let toc = '';
 
