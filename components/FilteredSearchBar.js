@@ -23,7 +23,7 @@ const FilteredSearchBar = ({ filters, filteredCount, filterOnChange, onSearchCha
     <Flex sx={{ flexDirection: 'column', p: 4 }}>
       <Flex sx={{ flexDirection: 'row' }}>
         <Dropdown
-          sx={{ '&:focus': { color: 'black' }, bg: 'grey', color: 'black', width: 150 }}
+          sx={{ '&:focus': { color: 'black' }, bg: 'gray', color: 'black', width: '100%' }}
           options={filters}
           activeGroup="all"
           onChange={filterOnChange}

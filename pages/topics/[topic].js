@@ -22,8 +22,11 @@ const walk = (resources, array) => {
 };
 
 const NO_FILTER = 'All';
-
+const categories = ['Subtopic', 'Time', 'Author', 'Medium', 'Difficulty Level'];
 const TopicPage = ({ posts, topic }) => {
+  var dict = {
+    Subtopics: {},
+  };
   const [filter, setFilter] = useState(NO_FILTER);
   const [searchChange, onSearchChange] = useState('');
   const filteredPosts = posts.filter((post) =>

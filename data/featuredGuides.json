@@ -1,3 +1,12 @@
 {
-  "featuredGuides": ["add-new-collateral-type-to-maker-protocol-kovan"]
+  "featuredGuides": [
+    "add-new-collateral-type-to-maker-protocol-kovan",
+    "legal-implications-of-leverage-trading-on-the-blockchain",
+    "managing-employees-in-a-decentralized-environment",
+    "how-do-we-add-to-the-maker-protocol",
+    "scaling-moving-the-protocol-to-another-chain",
+    "how-does-a-dao-maintain-a-budget",
+    "the-kinds-of-stablecoins",
+    "is-a-dao-a-legal-entity?"
+  ]
 }
