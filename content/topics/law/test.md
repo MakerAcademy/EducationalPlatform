@@ -1,8 +1,7 @@
 ---
 contentType: topics
 topic: law
-subtopic:
-  - test
+subtopic: test
 title: test
 description: 'test '
 level: beginner
