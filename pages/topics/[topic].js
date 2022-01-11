@@ -80,7 +80,7 @@ const TOPICS_PATH = 'content/topics';
 
 export const getStaticProps = async function ({ preview, previewData, params }) {
   console.log('getting static props');
-  const { topic } = params;
+  const { topic } = params.toLowerCase();
   console.log(topic);
   const url = TOPICS_PATH + '/' + topic;
   console.log(url);
@@ -127,8 +127,10 @@ export const getStaticPaths = async function () {
   const paths = files.reduce((acc, file) => {
     const content = require(`../../content/topics${file.replace(contentDir, '')}`);
     const { data } = matter(content.default);
-    if (data.titleURL) acc.push({ params: { titleURL: data.titleURL, topic: data.topic } });
+    if (data.titleURL)
+      acc.push({ params: { titleURL: data.titleURL, topic: data.topic.toLowerCase() } });
     console.log('acc:', acc.length);
+    console.log('topic', data.topic.toLowerCase());
     return acc;
   }, []);
 
