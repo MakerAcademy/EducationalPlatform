@@ -23,7 +23,7 @@ const Page = ({ file, guides, featGuidesFile, preview }) => {
   const [mobile, setMobile] = useState(false);
   const bpi = useBreakpointIndex({ defaultIndex: 2 });
   const router = useRouter();
-  // const [topic, setTopic] = useState('');
+
   const [data, form] = useGithubJsonForm(file, landingPageFormOptions);
   const [featGuidesData, featGuidesForm] = useFeaturedGuidesForm(featGuidesFile, preview);
 

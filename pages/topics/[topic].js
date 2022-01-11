@@ -25,6 +25,10 @@ const walk = (resources, array) => {
 const NO_FILTER = 'All';
 
 const TopicPage = ({ posts, topic }) => {
+  {
+    posts ? console.log('posts exist') : (posts = []);
+  }
+  console.log(posts);
   const [filter, setFilter] = useState(NO_FILTER);
   const [searchChange, onSearchChange] = useState('');
   const filteredPosts = posts.filter((post) =>
@@ -53,15 +57,21 @@ const TopicPage = ({ posts, topic }) => {
 
   return (
     <WrapperLayout mobile={mobile} router={router}>
-      <TopicsHeader
-        mobile={mobile}
-        filters={filters}
-        filteredCount={filteredPosts.length}
-        title={topic.charAt(0).toUpperCase() + topic.slice(1)}
-        filterOnChange={setFilter}
-        onSearchChange={onSearchChange}
-      />
-      <ContentGrid content={filteredPosts} path={url} />
+      {posts.length > 1 ? (
+        <>
+          <TopicsHeader
+            mobile={mobile}
+            filters={filters}
+            filteredCount={filteredPosts.length}
+            title={topic.charAt(0).toUpperCase() + topic.slice(1)}
+            filterOnChange={setFilter}
+            onSearchChange={onSearchChange}
+          />
+          <ContentGrid content={filteredPosts} path={url} />
+        </>
+      ) : (
+        <div>Loading </div>
+      )}
     </WrapperLayout>
   );
 };
@@ -69,8 +79,11 @@ const TopicPage = ({ posts, topic }) => {
 const TOPICS_PATH = 'content/topics';
 
 export const getStaticProps = async function ({ preview, previewData, params }) {
+  console.log('getting static props');
   const { topic } = params;
+  console.log(topic);
   const url = TOPICS_PATH + '/' + topic;
+  console.log(url);
   const resources = await getResources(preview, previewData, url);
   const posts = resources.filter((g) => g.data.frontmatter.contentType === ContentTypes.TOPIC);
   if (preview) {
@@ -106,6 +119,7 @@ export const getStaticProps = async function ({ preview, previewData, params }) 
 };
 
 export const getStaticPaths = async function () {
+  console.log('getting static paths');
   const fg = require('fast-glob');
   const contentDir = 'content/topics';
   const files = await fg(`${contentDir}/**/*.md`);
@@ -114,9 +128,11 @@ export const getStaticPaths = async function () {
     const content = require(`../../content/topics${file.replace(contentDir, '')}`);
     const { data } = matter(content.default);
     if (data.titleURL) acc.push({ params: { titleURL: data.titleURL, topic: data.topic } });
+    console.log('acc:', acc.length);
     return acc;
   }, []);
 
+  console.log('paths:', paths.length);
   return {
     fallback: true,
     paths,
