@@ -20,7 +20,6 @@ import { usePlugins } from 'tinacms';
 
 const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, preview, id, toc }) => {
   const [navData, navForm] = useSubNavForm(navFile, preview);
-
   useFormScreenPlugin(navForm);
   useGithubToolbarPlugins();
   useCreateDocument();
@@ -37,13 +36,13 @@ const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, previe
 
   const moduleResources = resources?.filter(
     (r) =>
-      r.data.frontmatter.components?.some((c) => file.data.frontmatter.topic.includes(c)) &&
+      r.data.frontmatter.topic?.some((c) => file.data.frontmatter.topic.includes(c)) &&
       r.data.frontmatter.contentType === ContentTypes.TOPIC
   );
 
   const relatedDocs = resources?.filter(
     (r) =>
-      r.data.frontmatter.components?.some((c) => file.data.frontmatter.topic.includes(c)) &&
+      r.data.frontmatter.topic?.some((c) => file.data.frontmatter.topic.includes(c)) &&
       r.data.frontmatter.contentType === ContentTypes.TOPIC
   );
 
@@ -55,13 +54,13 @@ const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, previe
     <div>Loading...</div>
   ) : (
     <ResourcesLayout
-      resourcePath={ContentTypes.GUIDES}
+      resourcePath={ContentTypes.TOPIC}
       slug={id}
       toc={toc}
       mobile={mobile}
       router={router}
       navData={navData}
-      sidebar={<SidebarGuides resources={moduleResources} resourcePath={ContentTypes.GUIDES} />}
+      sidebar={<SidebarGuides resources={moduleResources} resourcePath={ContentTypes.TOPIC} />}
     >
       <Head>
         <title>{title || 'Maker Academy'}</title>

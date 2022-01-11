@@ -9,11 +9,13 @@ import { useMarkdownForm } from 'next-tinacms-markdown';
 
 const ResourceEditor = ({ file, preview, cms }) => {
   useGithubToolbarPlugins();
+
   const [fmData, fmForm] = useEditFrontmatterForm(file, preview);
+  useFormScreenPlugin(fmForm);
 
   const [data, form] = useGithubMarkdownForm(file);
   usePlugin(form);
-  useFormScreenPlugin(fmForm);
+
   return (
     <InlineForm form={form}>
       <InlineWysiwyg
