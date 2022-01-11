@@ -28,7 +28,6 @@ const TopicPage = ({ posts, topic }) => {
   {
     posts ? console.log('posts exist') : (posts = []);
   }
-  console.log(posts);
   const [filter, setFilter] = useState(NO_FILTER);
   const [searchChange, onSearchChange] = useState('');
   const filteredPosts = posts.filter((post) =>
@@ -63,7 +62,7 @@ const TopicPage = ({ posts, topic }) => {
             mobile={mobile}
             filters={filters}
             filteredCount={filteredPosts.length}
-            title={topic.charAt(0).toUpperCase() + topic.slice(1)}
+            title={topic}
             filterOnChange={setFilter}
             onSearchChange={onSearchChange}
           />

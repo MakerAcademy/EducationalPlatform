@@ -3,7 +3,7 @@ title: Tax Implications of opening a CDP
 description: >-
   This will teach you about regulations on leverage trading and how they might
   apply to blockchains in the future.
-topic: Law
+topic: law
 subtopic: Taxes
 level: beginner
 estimatedTime: 30 - 60 minutes
@@ -17,27 +17,27 @@ root: false
 
 **Estimated Time**: 90 - 120 minutes
 
-* [Add a new collateral type to Maker Protocol - Kovan](#add-a-new-collateral-type-to-maker-protocol---kovan)
-  * [Overview](#overview)
-  * [Learning Objectives](#learning-objectives)
-  * [Pre-requisites](#pre-requisites)
-  * [Guide](#guide)
-    * [Setup](#setup)
-    * [Collateral Type](#collateral-type)
-    * [Setup Spell](#setup-spell)
-    * [Price Feeds](#price-feeds)
-    * [Deploy Adapter](#deploy-adapter)
-    * [Deploy Collateral Auction contract](#deploy-collateral-auction-contract)
-    * [Calculate Risk Parameters](#calculate-risk-parameters)
-    * [Deploy Spell](#deploy-spell)
-    * [Governance actions](#governance-actions)
-    * [Execute Spell](#execute-spell)
-    * [Test Collateral Type](#test-collateral-type)
-  * [Troubleshooting](#troubleshooting)
-  * [Summary](#summary)
-  * [Additional resources](#additional-resources)
-  * [Next Steps](#next-steps)
-  * [Help](#help)
+- [Evading Taxes 101](#evading-taxes-101)
+  - [Overview](#overview)
+  - [Learning Objectives](#learning-objectives)
+  - [Pre-requisites](#pre-requisites)
+  - [Guide](#guide)
+    - [Setup](#setup)
+    - [Collateral Type](#collateral-type)
+    - [Setup Spell](#setup-spell)
+    - [Price Feeds](#price-feeds)
+    - [Deploy Adapter](#deploy-adapter)
+    - [Deploy Collateral Auction contract](#deploy-collateral-auction-contract)
+    - [Calculate Risk Parameters](#calculate-risk-parameters)
+    - [Deploy Spell](#deploy-spell)
+    - [Governance actions](#governance-actions)
+    - [Execute Spell](#execute-spell)
+    - [Test Collateral Type](#test-collateral-type)
+  - [Troubleshooting](#troubleshooting)
+  - [Summary](#summary)
+  - [Additional resources](#additional-resources)
+  - [Next Steps test](#next-steps-test)
+  - [Help](#help)
 
 ## Overview
 

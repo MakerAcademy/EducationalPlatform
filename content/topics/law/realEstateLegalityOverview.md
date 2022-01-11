@@ -1,7 +1,7 @@
 ---
 title: Legalities of Real Estate on the Blockchain
 description: This will teach the legalities behind MakerDAO's RWA's.
-topic: Law
+topic: law
 subtopic: Real Estate
 level: beginner
 estimatedTime: 30 - 60 minutes
@@ -16,7 +16,7 @@ root: false
 
 **Estimated Time**: 90 - 120 minutes
 
-- [Add a new collateral type to Maker Protocol - Kovan](#add-a-new-collateral-type-to-maker-protocol---kovan)
+- [Evading Taxes 101](#evading-taxes-101)
   - [Overview](#overview)
   - [Learning Objectives](#learning-objectives)
   - [Pre-requisites](#pre-requisites)

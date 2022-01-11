@@ -1,7 +1,7 @@
 ---
 title: Could a Corporate Tax be Applied to DAO's?
 description: This will analyze the government's ability to tax a DAO.
-topic: Law
+topic: law
 subtopic: Taxes
 level: intermediate
 estimatedTime: 40 - 50 minutes
@@ -16,7 +16,7 @@ root: false
 
 **Estimated Time**: 90 - 120 minutes
 
-- [Add a new collateral type to Maker Protocol - Kovan](#add-a-new-collateral-type-to-maker-protocol---kovan)
+- [Evading Taxes 101](#evading-taxes-101)
   - [Overview](#overview)
   - [Learning Objectives](#learning-objectives)
   - [Pre-requisites](#pre-requisites)

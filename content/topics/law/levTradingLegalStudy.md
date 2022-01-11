@@ -1,7 +1,7 @@
 ---
 title: Legal Implications of Leverage Trading on the Blockchain
 description: This will teach you about regulations on leverage trading and how they might apply to blockchains in the future.
-topic: Law
+topic: law
 subtopic: Securities
 level: advanced
 estimatedTime: 90 - 120 minutes

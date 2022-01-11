@@ -1,7 +1,7 @@
 ---
 title: Is a DAO a Legal Entity?
 description: This will teach you how international governments view a DAO.
-topic: Law
+topic: law
 subtopic: Corporate
 level: advanced
 estimatedTime: 100 - 140 minutes
