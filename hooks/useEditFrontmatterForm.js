@@ -58,7 +58,7 @@ const useEditFrontmatterForm = (mdFile, preview) => {
         required: false,
       },
       {
-        name: 'frontmatter.body',
+        name: 'markdownBody',
         label: 'Document Body',
         description: 'Use the rich text editor to compose or copy and paste markdown content.',
         component: 'markdown',

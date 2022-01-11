@@ -23,8 +23,6 @@ const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, previe
   useFormScreenPlugin(navForm);
   useGithubToolbarPlugins();
   useCreateDocument();
-  const [data, form] = useEditFrontmatterForm(file, preview);
-  usePlugin(form);
 
   const router = useRouter();
   const [mobile, setMobile] = useState(false);
@@ -36,13 +34,13 @@ const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, previe
 
   const moduleResources = resources?.filter(
     (r) =>
-      r.data.frontmatter.topic?.some((c) => file.data.frontmatter.topic.includes(c)) &&
+      r.data.frontmatter.component?.some((c) => file.data.frontmatter.topic.includes(c)) &&
       r.data.frontmatter.contentType === ContentTypes.TOPIC
   );
 
   const relatedDocs = resources?.filter(
     (r) =>
-      r.data.frontmatter.topic?.some((c) => file.data.frontmatter.topic.includes(c)) &&
+      r.data.frontmatter.component?.some((c) => file.data.frontmatter.topic.includes(c)) &&
       r.data.frontmatter.contentType === ContentTypes.TOPIC
   );
 
@@ -84,6 +82,7 @@ export const getStaticProps = async function ({ preview, previewData, params }) 
   const resources = await getResources(preview, previewData, 'content/topics/' + topic);
   const resource = resources.find((r) => r.data.frontmatter.titleURL === id);
   const fileRelativePath = resource.fileRelativePath;
+  console.log(fileRelativePath);
 
   if (preview) {
     const sharedContentfile = await getGithubPreviewProps({
@@ -166,7 +165,7 @@ export const getStaticPaths = async function () {
   const paths = files.reduce((acc, file) => {
     const content = require(`../../../content/topics${file.replace(contentDir, '')}`);
     const { data } = matter(content.default);
-    if (data.titleURL) acc.push({ params: { id: data.titleURL, topic: data.topic } });
+    if (data.titleURL) acc.push({ params: { topic: data.topic, id: data.titleURL } });
     return acc;
   }, []);
 
