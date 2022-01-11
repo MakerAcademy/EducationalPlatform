@@ -1,7 +1,7 @@
 ---
 title: Most Effective Way of Decentralizing Operations
 description: This will teach you how MakerDAO deals with operations.
-topic: Business
+topic: business
 subtopic: Operations
 level: intermediate
 estimatedTime: 80 - 100 minutes

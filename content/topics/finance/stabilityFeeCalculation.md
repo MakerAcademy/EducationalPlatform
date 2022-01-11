@@ -1,7 +1,7 @@
 ---
 title: How Does MakerDAO Determine Stability Fees?
 description: This will teach you how stability fees are calculated.
-topic: Finance
+topic: finance
 subtopic: Banking
 level: advanced
 estimatedTime: 200 - 250 minutes

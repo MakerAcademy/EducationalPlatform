@@ -1,7 +1,7 @@
 ---
 title: The Different Ways a Stablecoin can be Crypto-Collateralized
 description: This will teach you how different stablecoins use crypto as reserve.
-topic: Finance
+topic: finance
 subtopic: Currency
 level: beginner
 estimatedTime: 80 - 100 minutes

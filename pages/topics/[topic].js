@@ -80,7 +80,7 @@ const TOPICS_PATH = 'content/topics';
 
 export const getStaticProps = async function ({ preview, previewData, params }) {
   console.log('getting static props');
-  const { topic } = params.toLowerCase();
+  const { topic } = params;
   console.log(topic);
   const url = TOPICS_PATH + '/' + topic;
   console.log(url);

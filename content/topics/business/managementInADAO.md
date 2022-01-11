@@ -1,7 +1,7 @@
 ---
 title: Managing Employees in a Decentralized Environment
 description: This explains how to manage employees in a decentralized environment.
-topic: Business
+topic: business
 subtopic: Management
 level: intermediate
 estimatedTime: 80 - 100 minutes

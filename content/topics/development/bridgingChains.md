@@ -1,7 +1,7 @@
 ---
 title: Scaling - Moving the Protocol to Another Chain
 description: This will teach how to build interfaces between chains.
-topic: Development
+topic: development
 subtopic: Sidechains
 level: advanced
 estimatedTime: 400 - 500 minutes

@@ -1,7 +1,7 @@
 ---
 title: In-depth view of Maker's Keepers - Arbitrage
 description: This will teach you how MakerDAO relies on arbitrage for a stable price.
-topic: Finance
+topic: finance
 subtopic: Markets
 level: beginner
 estimatedTime: 30 - 60 minutes

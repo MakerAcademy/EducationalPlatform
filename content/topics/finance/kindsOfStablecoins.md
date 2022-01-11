@@ -1,7 +1,7 @@
 ---
 title: The Kinds of Stablecoins
 description: This will teach you how stablecoins are collateralized.
-topic: Finance
+topic: finance
 subtopic: Currency
 level: beginner
 estimatedTime: 10 - 15 minutes

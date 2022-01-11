@@ -1,7 +1,7 @@
 ---
 title: Software Exploitation of Smart Contracts
 description: This will go over all common attacks against smart contracts.
-topic: Development
+topic: development
 subtopic: Smart Contracts
 level: advanced
 estimatedTime: 80 - 100 minutes

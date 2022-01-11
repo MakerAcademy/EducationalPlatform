@@ -1,7 +1,7 @@
 ---
 title: How Does a DAO Maintain a Budget?
 description: This will teach you how MakerDAO manages/implements a budget.
-topic: Finance
+topic: finance
 subtopic: Accounting
 level: beginner
 estimatedTime: 40 - 70 minutes

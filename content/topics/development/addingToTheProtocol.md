@@ -1,7 +1,7 @@
 ---
 title: How Do We Add to the Maker Protocol?
 description: This will demonstrate how you can update smart contracts.
-topic: Development
+topic: development
 subtopic: Smart Contracts
 level: intermediate
 estimatedTime: 80 - 100 minutes
