@@ -18,7 +18,7 @@ const GuideList = ({ guides, title, path }) => {
           >
             <Heading variant="largeHeading">{title}</Heading>
 
-            <Link href={'/guides'} passHref>
+            <Link href={'/topics'} passHref>
               <Flex sx={{ ml: 'auto', alignItems: 'center' }}>
                 <Icon sx={{ mr: 2 }} color="primary" name={'arrow_right'}></Icon>
                 <ThemeLink sx={{ color: 'text', cursor: 'pointer' }}>View All</ThemeLink>
@@ -43,19 +43,19 @@ const GuideList = ({ guides, title, path }) => {
             if (!guide) return null;
             const {
               data: {
-                frontmatter: { group, title, slug, description, tags },
+                frontmatter: { contentType, title, titleURL, description, topic, subtopic },
               },
             } = guide;
             return (
               <GuideCard
                 key={title}
                 title={title}
-                type={group}
+                type={contentType}
                 description={description}
-                link={`/${path}/${slug}/`}
+                link={`/${path}/${topic}/${titleURL}/`}
                 linkText={'Read'}
                 icon={`stamp_${(i % 5) + 1}`}
-                tags={tags}
+                tags={subtopic}
                 sx={{
                   width: 7,
                   border: 'light',

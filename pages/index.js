@@ -51,9 +51,9 @@ const Page = ({ file, guides, featGuidesFile, preview }) => {
             cta="Interested? Watch Maker Academy's introduction video here!"
             mobile={mobile}
           />
-          <GuideList title="Featured Programs" path="guides" guides={featuredGuides} />
+          <GuideList title="Featured Programs" path="topics" guides={featuredGuides} />
           <GuideList title="Featured Topics" path="topics" guides={featuredGuides} />
-          <GuideList title="Recent MakerDAO News" path="guides" guides={featuredGuides} />
+          <GuideList title="Recent MakerDAO News" path="topics" guides={featuredGuides} />
         </Grid>
       </InlineForm>
     </SingleLayout>
