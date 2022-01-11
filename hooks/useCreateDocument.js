@@ -6,7 +6,7 @@ import { MarkdownFieldPlugin } from 'react-tinacms-editor';
 import { toMarkdownString } from '@utils';
 import { removeInvalidChars } from '../utils/removeInvalidChars';
 
-const useCreateDocument = (resources) => {
+const useCreateDocument = () => {
   const cms = useCMS();
   cms.plugins.add(MarkdownFieldPlugin);
 
@@ -24,42 +24,16 @@ const useCreateDocument = (resources) => {
             if (!value) {
               return 'A title is required';
             }
-            if (
-              resources.some(
-                (post) => post.data.frontmatter.titleURL === slugify(value, { lower: true })
-              )
-            ) {
-              return 'Sorry the document title must be unique';
-            }
           },
         },
         {
           name: 'description',
           label: 'Description',
           component: 'text',
-          required: false,
-        },
-        {
-          name: 'tags',
-          component: 'tags',
-          label: 'Tags',
           required: true,
-          description: 'Tags for this file',
           validate(value, allValues, meta, field) {
             if (!value) {
-              return 'Tags are required';
-            }
-          },
-        },
-        {
-          name: 'components',
-          component: 'tags',
-          label: 'Components',
-          required: true,
-          description: 'Add keywords for which parts of the Maker Protocol this file relates to',
-          validate(value, allValues, meta, field) {
-            if (!value) {
-              return 'Components are required';
+              return 'A description is required';
             }
           },
         },
@@ -68,7 +42,7 @@ const useCreateDocument = (resources) => {
           name: 'contentType',
           label: 'Content Type',
           description: 'Select the content type for this resource.',
-          options: ['documentation', 'topics', 'security'],
+          options: ['programs', 'topics'],
           required: true,
           validate(value, allValues, meta, field) {
             if (!value) {
@@ -77,20 +51,42 @@ const useCreateDocument = (resources) => {
           },
         },
         {
-          name: 'group',
-          label: 'Group',
-          description:
-            'Enter the "group" associated with this file (content type "Documentation" only).',
-          component: 'text',
-          required: false,
+          component: 'select',
+          name: 'topic',
+          label: 'Topic',
+          description: 'Select the content topic for this resource.',
+          options: ['business', 'development', 'finance', 'law'],
+          required: true,
+          validate(value, allValues, meta, field) {
+            if (!value) {
+              return 'Content topic is required';
+            }
+          },
         },
         {
-          name: 'parent',
-          label: 'Parent',
-          description:
-            'Enter the slug of the parent file you want to associate with this file (content type "Documentation" only).',
           component: 'text',
-          required: false,
+          name: 'subtopic',
+          label: 'subtopic',
+          description: 'Provide one subtopic which this document refers to',
+          required: true,
+          validate(value, allValues, meta, field) {
+            if (!value) {
+              return 'Subtopic is required';
+            }
+          },
+        },
+        {
+          component: 'select',
+          name: 'level',
+          label: 'level',
+          description: 'Choose a difficulty level for the document',
+          options: ['beginner', 'intermediate', 'advanced'],
+          required: true,
+          validate(value, allValues, meta, field) {
+            if (!value) {
+              return 'Difficulty level is required';
+            }
+          },
         },
         {
           name: 'root',
@@ -113,12 +109,10 @@ const useCreateDocument = (resources) => {
         const github = cms.api.github;
 
         const slug = removeInvalidChars(slugify(form.title, { lower: true }));
-        const fileRelativePath = form.group
-          ? `content/resources/${form.contentType}/${form.group}/${slug}.md`
-          : `content/resources/${form.contentType}/${slug}.md`;
+        const fileRelativePath = `content/${form.contentType}/${form.topic}/${slug}.md`;
         const rawMarkdownBody = form.body;
 
-        form.slug = slug;
+        form.titleURL = slug;
         form.date = form.date || new Date().toString();
         // form.author = (await github.getUser()).name;
         delete form.body;

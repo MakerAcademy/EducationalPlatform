@@ -4,7 +4,8 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { useBreakpointIndex } from '@theme-ui/match-media';
 import matter from 'gray-matter';
-import { useFormScreenPlugin } from 'tinacms';
+import { usePlugin, useFormScreenPlugin } from 'tinacms';
+import { InlineForm } from 'react-tinacms-inline';
 import { getGithubPreviewProps, parseMarkdown, parseJson } from 'next-tinacms-github';
 import useSubNavForm from '@hooks/useSubNavForm';
 import ResourcesLayout from '@layouts/ResourcesLayout';
@@ -12,15 +13,22 @@ import SidebarGuides from '@components/SidebarGuides';
 import ResourcePresentation from '@components/ResourcePresentation';
 import { createToc, getResources } from '@utils';
 import { ContentTypes } from '@utils/constants';
+import { useGithubToolbarPlugins } from 'react-tinacms-github';
+import useCreateDocument from '@hooks/useCreateDocument';
+import useEditFrontmatterForm from '../../../hooks/useEditFrontmatterForm';
+import { usePlugins } from 'tinacms';
 
 const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, preview, id, toc }) => {
   const [navData, navForm] = useSubNavForm(navFile, preview);
   useFormScreenPlugin(navForm);
+  useGithubToolbarPlugins();
+  useCreateDocument();
+  const [data, form] = useEditFrontmatterForm(file, preview);
+  usePlugin(form);
+
   const router = useRouter();
   const [mobile, setMobile] = useState(false);
   const bpi = useBreakpointIndex({ defaultIndex: 2 });
-
-  console.log('GuidesPage Topic: ', topic);
 
   useEffect(() => {
     setMobile(bpi < 2);
@@ -28,14 +36,14 @@ const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, previe
 
   const moduleResources = resources?.filter(
     (r) =>
-      r.data.frontmatter.components?.some((c) => file.data.frontmatter.components.includes(c)) &&
-      r.data.frontmatter.contentType === ContentTypes.GUIDES
+      r.data.frontmatter.topic?.some((c) => file.data.frontmatter.topic.includes(c)) &&
+      r.data.frontmatter.contentType === ContentTypes.TOPIC
   );
 
   const relatedDocs = resources?.filter(
     (r) =>
-      r.data.frontmatter.components?.some((c) => file.data.frontmatter.components.includes(c)) &&
-      r.data.frontmatter.contentType === ContentTypes.DOCUMENTATION
+      r.data.frontmatter.topic?.some((c) => file.data.frontmatter.topic.includes(c)) &&
+      r.data.frontmatter.contentType === ContentTypes.TOPIC
   );
 
   const title = file?.data?.frontmatter?.title;
@@ -46,19 +54,13 @@ const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, previe
     <div>Loading...</div>
   ) : (
     <ResourcesLayout
-      resourcePath={ContentTypes.GUIDES}
+      resourcePath={ContentTypes.TOPIC}
       slug={id}
       toc={toc}
       mobile={mobile}
       router={router}
       navData={navData}
-      sidebar={
-        <SidebarGuides
-          resources={moduleResources}
-          resourcePath={ContentTypes.GUIDES}
-          activeSlug={id}
-        />
-      }
+      sidebar={<SidebarGuides resources={moduleResources} resourcePath={ContentTypes.TOPIC} />}
     >
       <Head>
         <title>{title || 'Maker Academy'}</title>
@@ -66,7 +68,7 @@ const GuidesPage = ({ topic, file, resources, navFile, sharedContentfile, previe
       <ResourcePresentation
         file={file}
         relatedResources={relatedDocs}
-        contentType={ContentTypes.GUIDES}
+        contentType={ContentTypes.TOPIC}
         preview={preview}
         mobile={mobile}
         sharedContentfile={sharedContentfile}
@@ -158,13 +160,13 @@ export const getStaticProps = async function ({ preview, previewData, params }) 
 
 export const getStaticPaths = async function () {
   const fg = require('fast-glob');
-  const contentDir = 'content/topics';
+  const contentDir = `content/topics`;
   const files = await fg(`${contentDir}/**/*.md`);
 
   const paths = files.reduce((acc, file) => {
     const content = require(`../../../content/topics${file.replace(contentDir, '')}`);
     const { data } = matter(content.default);
-    if (data.titleURL) acc.push({ params: { id: data.titleURL, topic: data.subtopic } });
+    if (data.titleURL) acc.push({ params: { id: data.titleURL, topic: data.topic } });
     return acc;
   }, []);
 

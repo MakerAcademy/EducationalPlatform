@@ -5,6 +5,7 @@ import { InlineWysiwyg } from 'react-tinacms-editor';
 import useEditFrontmatterForm from '@hooks/useEditFrontmatterForm';
 import { useGithubMarkdownForm } from 'react-tinacms-github';
 import MarkdownWrapper from '@components/MarkdownWrapper';
+import { useMarkdownForm } from 'next-tinacms-markdown';
 
 const ResourceEditor = ({ file, preview, cms }) => {
   useGithubToolbarPlugins();
@@ -14,6 +15,7 @@ const ResourceEditor = ({ file, preview, cms }) => {
 
   const [data, form] = useGithubMarkdownForm(file);
   usePlugin(form);
+
   return (
     <InlineForm form={form}>
       <InlineWysiwyg

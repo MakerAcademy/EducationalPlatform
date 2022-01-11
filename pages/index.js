@@ -30,7 +30,7 @@ const Page = ({ file, guides, featGuidesFile, preview }) => {
   useFormScreenPlugin(featGuidesForm);
   usePlugin(form);
   useGithubToolbarPlugins();
-  useCreateDocument([...guides]);
+  useCreateDocument();
 
   useEffect(() => {
     setMobile(bpi < 2);

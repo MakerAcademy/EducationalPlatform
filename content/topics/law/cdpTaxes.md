@@ -1,6 +1,8 @@
 ---
 title: Tax Implications of opening a CDP
-description: This will teach you about regulations on leverage trading and how they might apply to blockchains in the future.
+description: >-
+  This will teach you about regulations on leverage trading and how they might
+  apply to blockchains in the future.
 topic: Law
 subtopic: Taxes
 level: beginner
@@ -9,34 +11,33 @@ titleURL: tax-implications-of-opening-a-cdp
 contentType: topics
 root: false
 ---
-
 # Evading Taxes 101
 
 **Level**: Advanced
 
 **Estimated Time**: 90 - 120 minutes
 
-- [Add a new collateral type to Maker Protocol - Kovan](#add-a-new-collateral-type-to-maker-protocol---kovan)
-  - [Overview](#overview)
-  - [Learning Objectives](#learning-objectives)
-  - [Pre-requisites](#pre-requisites)
-  - [Guide](#guide)
-    - [Setup](#setup)
-    - [Collateral Type](#collateral-type)
-    - [Setup Spell](#setup-spell)
-    - [Price Feeds](#price-feeds)
-    - [Deploy Adapter](#deploy-adapter)
-    - [Deploy Collateral Auction contract](#deploy-collateral-auction-contract)
-    - [Calculate Risk Parameters](#calculate-risk-parameters)
-    - [Deploy Spell](#deploy-spell)
-    - [Governance actions](#governance-actions)
-    - [Execute Spell](#execute-spell)
-    - [Test Collateral Type](#test-collateral-type)
-  - [Troubleshooting](#troubleshooting)
-  - [Summary](#summary)
-  - [Additional resources](#additional-resources)
-  - [Next Steps](#next-steps)
-  - [Help](#help)
+* [Add a new collateral type to Maker Protocol - Kovan](#add-a-new-collateral-type-to-maker-protocol---kovan)
+  * [Overview](#overview)
+  * [Learning Objectives](#learning-objectives)
+  * [Pre-requisites](#pre-requisites)
+  * [Guide](#guide)
+    * [Setup](#setup)
+    * [Collateral Type](#collateral-type)
+    * [Setup Spell](#setup-spell)
+    * [Price Feeds](#price-feeds)
+    * [Deploy Adapter](#deploy-adapter)
+    * [Deploy Collateral Auction contract](#deploy-collateral-auction-contract)
+    * [Calculate Risk Parameters](#calculate-risk-parameters)
+    * [Deploy Spell](#deploy-spell)
+    * [Governance actions](#governance-actions)
+    * [Execute Spell](#execute-spell)
+    * [Test Collateral Type](#test-collateral-type)
+  * [Troubleshooting](#troubleshooting)
+  * [Summary](#summary)
+  * [Additional resources](#additional-resources)
+  * [Next Steps](#next-steps)
+  * [Help](#help)
 
 ## Overview
 
@@ -46,23 +47,23 @@ The Maker Protocol deployed to the Kovan testnet supports multiple collateral ty
 
 After going through this guide you will get a better understanding of,
 
-- Configuring core Maker Protocol contracts
-- Additional contracts required: Price Feed, Auction, Adapter.
-- Governance steps to initialize the new collateral type.
+* Configuring core Maker Protocol contracts
+* Additional contracts required: Price Feed, Auction, Adapter.
+* Governance steps to initialize the new collateral type.
 
 ## Pre-requisites
 
 You will need a good understanding of these concepts to be able to work through this guide,
 
-- [MCD 101](https://github.com/makerdao/developerguides/blob/master/mcd/mcd-101/mcd-101.md).
-- Vaults
-- Risk parameters of a collateral type
-- Solidity
-- Dapptools - Dapp, Seth
+* [MCD 101](https://github.com/makerdao/developerguides/blob/master/mcd/mcd-101/mcd-101.md).
+* Vaults
+* Risk parameters of a collateral type
+* Solidity
+* Dapptools - Dapp, Seth
 
 ## Guide
 
-*Before starting this guide please install [dapptools](https://dapp.tools) and [setup seth](https://github.com/makerdao/developerguides/blob/master/devtools/seth/seth-guide-01/seth-guide-01.md) for use with the Kovan testnet.*
+_Before starting this guide please install [dapptools](https://dapp.tools) and [setup seth](https://github.com/makerdao/developerguides/blob/master/devtools/seth/seth-guide-01/seth-guide-01.md) for use with the Kovan testnet._
 
 The guide below is updated for the [0.2.17](https://changelog.makerdao.com/releases/kovan/0.2.17/index.html) release of Maker Protocol on Kovan.
 
@@ -186,7 +187,7 @@ seth --to-uint256 1000000000315522921573372069
 export DUTY=0000000000000000000000000000000000000000033b2e3ca43176a9d2dfd0a5
 ```
 
-*Note: How the number `1000000000315522921573372069` corresponds to a `1%` annual rate is covered in [this guide](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md)*
+_Note: How the number_ `1000000000315522921573372069` corresponds to a `1%` annual rate is covered in [this guide](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md)
 
 A liquidation penalty is imposed on a Vault by increasing its debt by a percentage before a collateral aucion is kicked off. This penalty is imposed to prevent [Auction Grinding Attacks](https://github.com/livnev/auction-grinding/blob/master/grinding.pdf).
 Calculate the uint256 value using the first command to initialize the CHOP variable with an additional `10%`.  E.g. you can pass `110%` here so when you start an auction it will be for the amount of the outstanding debt plus `10%`.
@@ -314,8 +315,8 @@ In this guide you learned how to set up a new collateral type for a token and op
 
 1. [Drawing Dai from the Kovan MCD deployment using Seth](https://github.com/makerdao/developerguides/blob/master/mcd/mcd-seth/mcd-seth-01.md)
 
-## Next Steps
+## Next Steps test
 
 ## Help
 
-- Rocket chat - [#dev](https://chat.makerdao.com/channel/dev) channel
+* Rocket chat - [#dev](https://chat.makerdao.com/channel/dev) channel
