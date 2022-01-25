@@ -13,6 +13,7 @@ import AccountSettingsForm from '../components/AccountInfo';
 const Page = () => {
   const [mobile, setMobile] = useState(false);
   const router = useRouter();
+
   return (
     <SingleLayout mobile={mobile} router={router}>
       <Head>

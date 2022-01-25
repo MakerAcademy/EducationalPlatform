@@ -2,6 +2,7 @@ import { apiProxy } from 'next-tinacms-github';
 
 export default async (req, res) => {
   try {
+    console.log(process.env.SIGNING_KEY);
     const result = await apiProxy(process.env.SIGNING_KEY)(req, res);
     return result;
   } catch (e) {
