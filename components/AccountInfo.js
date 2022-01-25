@@ -6,7 +6,7 @@ import { useUser } from '@auth0/nextjs-auth0';
 const AccountSettingsForm = () => {
   const { user, error, isLoading } = useUser();
   const name = user ? user.name : 'Your Name';
-  const username = user ? user.nickname : 'Your Username';
+  const username = user ? user.email : 'Your Username';
 
   return (
     <Box>
