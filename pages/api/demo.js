@@ -11,7 +11,12 @@ import {
 const REGION = 'us-east-1';
 
 export default function handler(req, res) {
-  const ddbClient = new DynamoDBClient({ region: REGION });
+  console.log(process.env.AWS_ACCESS_KEY_ID_MA);
+  const ddbClient = new DynamoDBClient({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID_MA,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_MA,
+    region: REGION,
+  });
   const createCommand = async (p) => {
     try {
       const data = await ddbClient.send(new PutItemCommand(p));
