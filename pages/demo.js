@@ -8,39 +8,14 @@ import { jsx, Box, Flex, Text, Radio, Divider, Label, Button, Input } from 'them
 const Page = () => {
   const [mobile, setMobile] = useState(false);
   const router = useRouter();
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [topic, setTopic] = useState('');
-  const [body, setBody] = useState('');
-
-  const handleCreateUser = async (e) => {
-    e.preventDefault();
-    console.log('submitted');
-    const form = document.getElementById('createUserForm');
-    const res = await fetch('/api/demo', {
-      body: JSON.stringify({
-        action: 'createUser',
-        userid: form.elements['id'].value,
-        email: form.elements['email'].value,
-        name: form.elements['name'].value,
-        role: form.elements['role'].value,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    });
-
-    const result = await res.json();
-  };
+  const [count, setCount] = useState(0);
 
   const handleCreateDocument = async (e) => {
     e.preventDefault();
     console.log('submitted');
     const form = document.getElementById('createDocumentForm');
-    const res = await fetch('/api/demo', {
+    const res = await fetch('/api/mongodb/document', {
       body: JSON.stringify({
-        action: 'createDocument',
         title: form.elements['title'].value,
         author: form.elements['author'].value,
         topic: form.elements['topic'].value,
@@ -54,34 +29,26 @@ const Page = () => {
     const result = await res.json();
   };
 
-  const handleReadDocument = async (e) => {
+  const handleGetDocumentsList = async (e) => {
     e.preventDefault();
     const form = document.getElementById('readDocumentForm');
-    const res = await fetch('/api/demo', {
-      body: JSON.stringify({
-        action: 'readDocument',
-        title: form.elements['title'].value,
-        author: form.elements['author'].value,
-      }),
+    const res = await fetch('/api/mongodb/document', {
       headers: {
         'Content-Type': 'application/json',
       },
-      method: 'POST',
+      method: 'GET',
     });
 
     const result = await res.json();
     console.log(result);
-    setTitle(result.Item.title.S);
-    setAuthor(result.Item.author.S);
-    setTopic(result.Item.topic.S);
-    setBody(result.Item.body.S);
+    setCount(result.message.length);
   };
 
   const handleUpdateDocument = async (e) => {
     e.preventDefault();
     console.log('submitted');
     const form = document.getElementById('updateDocumentForm');
-    const res = await fetch('/api/demo', {
+    const res = await fetch('/api/mongodb/document', {
       body: JSON.stringify({
         action: 'updateDocument',
         title: form.elements['title'].value,
@@ -92,7 +59,7 @@ const Page = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      method: 'POST',
+      method: 'PUT',
     });
     const result = await res.json();
   };
@@ -100,7 +67,7 @@ const Page = () => {
   const handleDeleteDocument = async (e) => {
     e.preventDefault();
     const form = document.getElementById('deleteDocumentForm');
-    const res = await fetch('/api/demo', {
+    const res = await fetch('/api/mongodb/document', {
       body: JSON.stringify({
         action: 'deleteDocument',
         title: form.elements['title'].value,
@@ -109,7 +76,7 @@ const Page = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      method: 'POST',
+      method: 'DELETE',
     });
 
     const result = await res.json();
@@ -137,40 +104,6 @@ const Page = () => {
             <Box>
               <h1>Demo Forms</h1>
             </Box>
-            <Box as="form" id="createUserForm" onSubmit={handleCreateUser}>
-              <h2>Create User</h2>
-
-              <Box>
-                <Label htmlFor="id">User ID</Label>
-                <Input id="id" placeholder={'id'} />
-              </Box>
-              <Box>
-                <Label htmlFor="email">email</Label>
-                <Input id="email" placeholder={'email'} />
-              </Box>
-              <Box>
-                <Label htmlFor="name">name</Label>
-                <Input id="name" placeholder={'name'} />
-              </Box>
-              <Box>
-                <Label>Role</Label>
-                <Flex mb={3}>
-                  <Label>
-                    <Radio name="role" value="Learner" defaultChecked={true} /> Learner
-                  </Label>
-                  <Label>
-                    <Radio name="role" value="Creator" /> Creator
-                  </Label>
-                  <Label>
-                    <Radio name="role" value="Editor " /> Editor
-                  </Label>
-                </Flex>
-              </Box>
-              <Flex css={{ marginTop: 20, justifyContent: 'flex-end' }}>
-                <Button type="submit">Create New User</Button>
-              </Flex>
-            </Box>
-            <Divider />
             <Box as="form" id="createDocumentForm" onSubmit={handleCreateDocument}>
               <h2>Create Document</h2>
 
@@ -195,26 +128,14 @@ const Page = () => {
               </Flex>
             </Box>
             <Divider />
-            <Box as="form" id="readDocumentForm" onSubmit={handleReadDocument}>
-              <h2>Read Document</h2>
-
+            <Box as="form" id="readDocumentForm" onSubmit={handleGetDocumentsList}>
+              <h2>Get Number of Documents</h2>
               <Box>
-                <Label htmlFor="title">Title</Label>
-                <Input id="title" placeholder={'title'} />
-              </Box>
-              <Box>
-                <Label htmlFor="author">Author</Label>
-                <Input id="author" placeholder={'author'} />
+                <h2>Doc Count: {count}</h2>
               </Box>
               <Flex css={{ marginTop: 20, justifyContent: 'flex-end' }}>
-                <Button type="submit">Fetch Document</Button>
+                <Button type="submit">Fetch Document Count</Button>
               </Flex>
-            </Box>
-            <Box>
-              <h2>{title}</h2>
-              <h3>{author}</h3>
-              <h3>{topic}</h3>
-              <Box>{body}</Box>
             </Box>
             <Divider />
             <Box as="form" id="deleteDocumentForm" onSubmit={handleDeleteDocument}>
